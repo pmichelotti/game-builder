@@ -1,0 +1,16 @@
+{
+	"name" : "game-builder",
+	"version" : "0.1.0",
+
+	"author" : {
+		"name" : "Paul Michelotti",
+		"email" : "hotarug@gmail.com",
+		"web" : "http://paulmichelotti.com"
+	},
+
+	"dependencies" : {
+		"express" : "*",
+		"jade" : "*"
+	}
+
+}

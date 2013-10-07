@@ -1,0 +1,108 @@
+/* http://www.colourlovers.com/palette/46688/fresh_cut_day */
+
+@tropiteal: #00A8C6;
+@teal-drop: #40C0CB;
+@whitetrash: #F9F2E7;
+@atomic-bikini: #AEE239;
+@feeble-week: #8FBE00;
+
+@white : #FFFFFF;
+
+@large-button-border: 20px;
+
+.large-button(@bg-color, @color) {
+  width : 60%;
+  text-align : center;
+  padding : 25px;
+  border-radius : @large-button-border;
+  background-color : @bg-color;
+  border : 1px solid darken(@bg-color, 2%);
+  color : @color;
+  cursor : pointer;
+
+  &:hover {
+    background-color : lighten(@bg-color, 5%);
+  }
+  &:active {
+    background-color : darken(@bg-color, 5%);
+    box-shadow: 0px 0px 2px 4px darken(@bg-color, 10%) inset;
+  }
+
+}
+
+.centered() {
+  margin-left : auto;
+  margin-right : auto;
+}
+
+.top-tool-bar(@color) {
+  background-color : @color;
+  padding : 10px;
+}
+
+/* UTILITIES */
+
+.large-action(@color) {
+  color : @color;
+  font-size : 20px;
+  cursor : pointer;
+
+  &:hover {
+    color : darken(@color, 3%);
+  }
+}
+
+.unstyled-list {
+  list-style-type : none;
+  list-style-position : outside;
+  padding : 0px;
+}
+
+.pad-right {
+  padding-right : 15px;
+}
+
+.margin-right {
+  margin-right : 15px;
+}
+
+/* FORM STYLES */
+.thick-form() {
+
+  label {
+    font-size : 2.5em;
+    display : block;
+    margin : 0 auto 15px auto;
+
+    input[ type = "text" ] {
+      width : 50%;
+      margin-left : 25px;
+    }
+  }
+
+  button[ type = "submit" ] {
+    font-size : 2.5em;
+  }
+
+}
+
+
+/* BODY STYLES */
+body {
+  background-color : @whitetrash;
+}
+
+/* LOADING OVERLAY */
+@import "loading.less";
+
+/* GAME LIST */
+@import "gameList.less";
+
+/* GAME BUILDER DASHBOARD */
+@import "dashboard.less";
+
+/* GAME BUILDER NAVIGATION */
+@import "gamebuilderNavigation.less";
+
+/* SCREEN MANAGER */
+@import "screenManager.less";

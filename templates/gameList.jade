@@ -1,0 +1,12 @@
+div.game-list-list-container.container
+  ul.game-list-list( data-bind = 'foreach : games' )
+    li.game-list-item( data-bind = 'click : $parent.editGame' )
+      div.game-list-button
+        span.game-title( data-bind = 'text : name' )
+div.new-game-form-container.container( data-bind = 'with : newGameForm' )
+  form.new-game-form( data-bind = 'submit : submit' )
+    label Name
+      input( type = 'text', name = 'name', data-bind = 'value : name' )
+    label ID
+      input( type = 'text', name = 'id', data-bind = 'value : id' )
+    button.btn.btn-primary( type = 'submit' ) New Game

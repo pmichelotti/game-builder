@@ -1,0 +1,6 @@
+div.game-builder-navigation( data-bind = 'visible : isNotDashboardMode' )
+  include gameBuilderNavigation
+section.dashboard( data-bind = 'visible : isDashboardMode' )
+  include dashboard/dashboard
+section.screen-manager( data-bind = 'visible : isScreenManagerMode' )
+  include screenManager/screenManager

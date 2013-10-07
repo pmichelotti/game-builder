@@ -1,0 +1,263 @@
+/* http://www.colourlovers.com/palette/46688/fresh_cut_day */
+/* UTILITIES */
+.unstyled-list {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.pad-right {
+  padding-right: 15px;
+}
+.margin-right {
+  margin-right: 15px;
+}
+/* FORM STYLES */
+/* BODY STYLES */
+body {
+  background-color: #f9f2e7;
+}
+/* LOADING OVERLAY */
+.loading-overlay {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #40c0cb;
+  opacity: 0.3;
+  text-align: center;
+}
+/* GAME LIST */
+.game-list-container {
+  margin-top: 45px;
+}
+.game-list-container ul.game-list-list {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.game-list-container ul.game-list-list > li {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #00a8c6;
+  border: 1px solid #009fbc;
+  color: #f9f2e7;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2.5em;
+  margin-bottom: 25px;
+}
+.game-list-container ul.game-list-list > li:hover {
+  background-color: #00bee0;
+}
+.game-list-container ul.game-list-list > li:active {
+  background-color: #0092ad;
+  box-shadow: 0px 0px 2px 4px #007d93 inset;
+}
+.game-list-container .new-game-form-container {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #40c0cb;
+  border: 1px solid #38bdc9;
+  color: #f9f2e7;
+  cursor: pointer;
+}
+.game-list-container .new-game-form-container:hover {
+  background-color: #54c7d0;
+}
+.game-list-container .new-game-form-container:active {
+  background-color: #34b3be;
+  box-shadow: 0px 0px 2px 4px #2ea0aa inset;
+}
+.game-list-container .new-game-form label {
+  font-size: 2.5em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.game-list-container .new-game-form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.game-list-container .new-game-form button[type="submit"] {
+  font-size: 2.5em;
+}
+/* GAME BUILDER DASHBOARD */
+.dashboard .dashboard-container {
+  margin-top: 45px;
+}
+.dashboard h1 {
+  font-size: 4em;
+  color: #ead1aa;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.dashboard-button-1 {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #8fbe00;
+  border: 1px solid #87b400;
+  color: #f9f2e7;
+  cursor: pointer;
+  margin: 15px auto;
+  font-size: 5em;
+}
+.dashboard-button-1:hover {
+  background-color: #a2d800;
+}
+.dashboard-button-1:active {
+  background-color: #7ca500;
+  box-shadow: 0px 0px 2px 4px #698b00 inset;
+}
+.dashboard-button-2 {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #83af00;
+  border: 1px solid #7ca400;
+  color: #f9f2e7;
+  cursor: pointer;
+  margin: 15px auto;
+  font-size: 5em;
+}
+.dashboard-button-2:hover {
+  background-color: #97c800;
+}
+.dashboard-button-2:active {
+  background-color: #709500;
+  box-shadow: 0px 0px 2px 4px #5d7c00 inset;
+}
+.dashboard-button-3 {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #789f00;
+  border: 1px solid #709500;
+  color: #f9f2e7;
+  cursor: pointer;
+  margin: 15px auto;
+  font-size: 5em;
+}
+.dashboard-button-3:hover {
+  background-color: #8bb900;
+}
+.dashboard-button-3:active {
+  background-color: #658600;
+  box-shadow: 0px 0px 2px 4px #526c00 inset;
+}
+.dashboard-button-4 {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #6c9000;
+  border: 1px solid #658600;
+  color: #f9f2e7;
+  cursor: pointer;
+  margin: 15px auto;
+  font-size: 5em;
+}
+.dashboard-button-4:hover {
+  background-color: #80aa00;
+}
+.dashboard-button-4:active {
+  background-color: #597700;
+  box-shadow: 0px 0px 2px 4px #465d00 inset;
+}
+.dashboard-button-5 {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #618100;
+  border: 1px solid #597700;
+  color: #f9f2e7;
+  cursor: pointer;
+  margin: 15px auto;
+  font-size: 5em;
+}
+.dashboard-button-5:hover {
+  background-color: #749a00;
+}
+.dashboard-button-5:active {
+  background-color: #4e6700;
+  box-shadow: 0px 0px 2px 4px #3b4e00 inset;
+}
+/* GAME BUILDER NAVIGATION */
+.game-builder-navigation {
+  background-color: #f4e7d3;
+  padding: 10px;
+}
+.game-builder-navigation ul.navigation-list {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.game-builder-navigation ul.navigation-list li {
+  float: left;
+  margin-right: 15px;
+}
+/* SCREEN MANAGER */
+.screen-manager-container ul.screen-list {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.screen-manager-container ul.screen-list .screen-list-item {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #00a8c6;
+  border: 1px solid #009fbc;
+  color: #f9f2e7;
+  cursor: pointer;
+  float: left;
+  font-size: 2.5em;
+  margin-bottom: 25px;
+}
+.screen-manager-container ul.screen-list .screen-list-item:hover {
+  background-color: #00bee0;
+}
+.screen-manager-container ul.screen-list .screen-list-item:active {
+  background-color: #0092ad;
+  box-shadow: 0px 0px 2px 4px #007d93 inset;
+}
+.screen-manager-container .new-screen-form-container {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #40c0cb;
+  border: 1px solid #38bdc9;
+  color: #f9f2e7;
+  cursor: pointer;
+}
+.screen-manager-container .new-screen-form-container:hover {
+  background-color: #54c7d0;
+}
+.screen-manager-container .new-screen-form-container:active {
+  background-color: #34b3be;
+  box-shadow: 0px 0px 2px 4px #2ea0aa inset;
+}
+.screen-manager-container .new-screen-form-container form label {
+  font-size: 2.5em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.screen-manager-container .new-screen-form-container form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.screen-manager-container .new-screen-form-container form button[type="submit"] {
+  font-size: 2.5em;
+}

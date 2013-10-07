@@ -1,0 +1,15 @@
+div.screen-manager-container.container( data-bind = 'with : screenManager' )
+  ul.screen-list( data-bind = 'foreach : screens' )
+    li.screen-list-item
+      div.screen-list-button
+        span.screen-name( data-bind = 'text : name' )
+        span.screen-id( data-bind = 'text : id' )
+  div.new-screen-form-container( data-bind = 'with : newScreenForm' )
+    form.new-screen-form( data-bind = 'submit : submit' )
+      label Name
+        input( type = 'text', name = 'name', data-bind = 'value : name' )
+      label Id
+        input( type = 'text', name = 'id', data-bind = 'value : id' )
+      label Type
+        select( name = 'screenType', data-bind = "options : screenTypes, optionsText : 'name', optionsCaption : 'Select Screen Type', value : screenType" )
+      button.btn.btn-primary( type = 'submit' ) New Screen

@@ -1,0 +1,23 @@
+doctype 5
+html
+  head
+    title= gameBuilder
+    script( type = 'text/javascript', src = 'js/libs/jquery-2.0.3.js' )
+    link( href = 'css/bootstrap.css', rel = 'stylesheet', media = 'screen' )
+    link( href = 'css/font-awesome.css', rel = 'stylesheet', media = 'screen' )
+    link( href = 'css/app.css', rel = 'stylesheet', media = 'screen' )
+  body
+    div.loading-overlay( data-bind = 'visible : loading' )
+      div.loading-content-container
+        i.icon-spinner.icon-spin.icon-4x
+    div.game-list-container( data-bind = 'visible : isGameListMode' )
+      include gameList
+    div.game-builder-container( data-bind = 'visible : isEditMode' )
+      div.game-builder( data-bind = 'with : currentGameBuilder' )
+        include gameBuilder
+
+
+    script( type = 'text/javascript', src = 'js/libs/knockout-2.3.0.debug.js' )
+    script( type = 'text/javascript', src = 'js/libs/bootstrap.js' )
+    script( type = 'text/javascript', src = 'js/libs/require.js', data-main = 'js/app/application' )
+
