@@ -1,10 +1,11 @@
-div.screen-manager-container.container( data-bind = 'with : screenManager' )
-  ul.screen-list( data-bind = 'foreach : screens' )
-    li.screen-list-item
-      div.screen-list-button
-        span.screen-name( data-bind = 'text : name' )
-        span.screen-id( data-bind = 'text : id' )
-  div.new-screen-form-container( data-bind = 'with : newScreenForm' )
+div.screen-manager-container( data-bind = 'with : screenManager' )
+  div.screen-list-container.container.clearfix
+    ul.screen-list( data-bind = 'foreach : screens' )
+      li.screen-list-item
+        div.screen-list-button
+          span.screen-name( data-bind = 'text : name' )
+          span.screen-id( data-bind = 'text : id' )
+  div.new-screen-form-container.container( data-bind = 'with : newScreenForm' )
     form.new-screen-form( data-bind = 'submit : submit' )
       label Name
         input( type = 'text', name = 'name', data-bind = 'value : name' )

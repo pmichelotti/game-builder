@@ -83,6 +83,10 @@ body {
   width: 50%;
   margin-left: 25px;
 }
+.game-list-container .new-game-form label select {
+  font-size: 2.5em;
+  margin-left: 25px;
+}
 .game-list-container .new-game-form button[type="submit"] {
   font-size: 2.5em;
 }
@@ -207,6 +211,9 @@ body {
   margin-right: 15px;
 }
 /* SCREEN MANAGER */
+.screen-manager-container {
+  margin-top: 25px;
+}
 .screen-manager-container ul.screen-list {
   list-style-type: none;
   list-style-position: outside;
@@ -221,9 +228,10 @@ body {
   border: 1px solid #009fbc;
   color: #f9f2e7;
   cursor: pointer;
+  width: auto;
   float: left;
   font-size: 2.5em;
-  margin-bottom: 25px;
+  margin: 0px 25px 25px 0px;
 }
 .screen-manager-container ul.screen-list .screen-list-item:hover {
   background-color: #00bee0;
@@ -241,6 +249,8 @@ body {
   border: 1px solid #38bdc9;
   color: #f9f2e7;
   cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
 }
 .screen-manager-container .new-screen-form-container:hover {
   background-color: #54c7d0;
@@ -256,6 +266,10 @@ body {
 }
 .screen-manager-container .new-screen-form-container form label input[type="text"] {
   width: 50%;
+  margin-left: 25px;
+}
+.screen-manager-container .new-screen-form-container form label select {
+  font-size: 2.5em;
   margin-left: 25px;
 }
 .screen-manager-container .new-screen-form-container form button[type="submit"] {
