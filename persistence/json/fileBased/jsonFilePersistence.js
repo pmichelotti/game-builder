@@ -1,11 +1,20 @@
-var fs = require( 'fs' );
+var fs = require( 'fs-extra' );
+var nameSanitizer = require( '../../../utils/names/sanitizeUtils.js' );
+
+//NTS - https://github.com/jprichardson/node-fs-extra
 
 var VALUE_JSONS_FILENAME = 'value.jsons';
 
 var persist = function( obj, startDir, callback ) {
 
+  /*
+   * Create the directory using fs-extra.mkdirs so that
+   * it creates the hierarchy if it does not already exist.  Once
+   * the directory to save into is created, the object is
+   * serialized.
+   */
   var makeAndSerialize = function() {
-    fs.mkdir( startDir, function( error ) {
+    fs.mkdirs( startDir, function( error ) {
       if ( error ) {
         callback( false, error );
         return;
@@ -14,10 +23,14 @@ var persist = function( obj, startDir, callback ) {
     } );
   };
 
+  /*
+   * Check and see if the directory which we want to save into already exists.  If
+   * it does, remove it and re-create it
+   */
   fs.exists( startDir, function( dirExists ) {
     if ( dirExists ) {
       console.log( 'Directory ' + startDir + ' already exists - removing' );
-      fs.rmdir( startDir, function( error ) {
+      fs.remove( startDir, function( error ) {
         if ( error ) {
           callback( false, error );
           return;
@@ -34,20 +47,15 @@ var persist = function( obj, startDir, callback ) {
 
 };
 
-var persistKeyedObject = function( obj, startDir, callback ) {
+var persistKeyedObject = function( obj, keys, startDir, callback ) {
 
-  var keysToSerialize = Array();
   var keysSuccessful = Array();
   var keysFailed = Array();
 
-  for( var curKey in obj ) {
-    keysToSerialize.push( curKey );
-  }
+  keys.forEach( function( curKey ) {
+    fs.mkdir( startDir + '/' + curKey.folder, function() {
 
-  keysToSerialize.forEach( function( curKey ) {
-    fs.mkdir( startDir + '/' + curKey, function() {
-
-      serializeObjectValue( curKey, obj[ curKey ], startDir + '/' + curKey, function( success, msg ) {
+      serializeObjectValue( curKey.key, obj[ curKey.key ], startDir + '/' + curKey.folder, function( success, msg ) {
 
         if ( success ) {
           keysSuccessful.push( curKey );
@@ -56,7 +64,7 @@ var persistKeyedObject = function( obj, startDir, callback ) {
           keysFailed.push( curKey );
         }
 
-        if ( keysSuccessful.length + keysFailed.length >= keysToSerialize.length ) {
+        if ( keysSuccessful.length + keysFailed.length >= keys.length ) {
           if ( keysFailed.length ) {
             callback( false, keysFailed );
             return;
@@ -85,7 +93,7 @@ var persistJsonObject = function( obj, startDir, callback ) {
   var keysToWrite = Array();
 
   for ( var curKey in obj ) {
-    keysToWrite.push( curKey );
+    keysToWrite.push( { "key" : curKey, "folder" : nameSanitizer.sanitizeForFolderName( curKey ) } );
   }
 
   var valueJsons = {
@@ -99,7 +107,7 @@ var persistJsonObject = function( obj, startDir, callback ) {
       return;
     }
 
-    persistKeyedObject( obj, startDir, callback );
+    persistKeyedObject( obj, keysToWrite, startDir, callback );
 
   } );
 };
@@ -109,7 +117,7 @@ var persistJsonArray = function( val, startDir, callback ) {
   var keysToWrite = Array();
 
   for ( var curKey in val ) {
-    keysToWrite.push( curKey );
+    keysToWrite.push( { "key" : curKey, "folder" : nameSanitizer.sanitizeForFolderName( curKey ) } );
   }
 
   var valueJsons = {
@@ -124,7 +132,7 @@ var persistJsonArray = function( val, startDir, callback ) {
       return;
     }
     else {
-      persistKeyedObject( val, startDir, callback );
+      persistKeyedObject( val, keysToWrite, startDir, callback );
       return;
     }
   } );
@@ -202,10 +210,10 @@ var deserializeObject = function( objectPath, keys, callback ) {
   var keysFailed = Array();
 
   keys.forEach( function( curKey ) {
-    deserializeValue( objectPath + '/' + curKey, function( success, curVal ) {
+    deserializeValue( objectPath + '/' + curKey.folder, function( success, curVal ) {
       if ( success ) {
         keysDeserialized.push( curKey );
-        completedObject[ curKey ] = curVal;
+        completedObject[ curKey.key ] = curVal;
       }
       else {
         keysFailed.push( curKey );
@@ -239,7 +247,7 @@ var deserializeArray = function( objectPath, keys, callback ) {
     }
 
     keys.forEach( function( curKey ) {
-      completedArray.push( obj[ curKey ] );
+      completedArray.push( obj[ curKey.key ] );
     } );
 
     callback( true, completedArray );
