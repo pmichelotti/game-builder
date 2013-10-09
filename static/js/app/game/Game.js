@@ -19,6 +19,12 @@ define( [], function() {
       retObject[ 'id' ] = self.id;
       retObject[ 'name' ] = self.name;
 
+      retObject[ 'screens' ] = Array();
+
+      self.screens.forEach( function( curScreen ) {
+        retObject[ 'screens' ].push( curScreen.toJSON() );
+      } );
+
       return retObject;
     };
   };

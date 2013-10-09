@@ -15,7 +15,9 @@ define( [ 'game/Game' ], function( Game ) {
 
       gameOptions[ 'name' ] = self.name();
 
-      return new Game( self.game.id, self.name() );
+      gameOptions[ 'screens' ] = self.screens();
+
+      return new Game( self.game.id, gameOptions );
 
     };
   };
