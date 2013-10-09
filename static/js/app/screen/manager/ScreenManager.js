@@ -7,6 +7,8 @@ define( [ 'screen/manager/NewScreenForm' ], function( NewScreenForm ) {
 
     var self = this;
 
+    this.game = ko.observable();
+
     /*
      * A registered screen builder defines, for a particular id, a
      * builder constructor and a renderable form field
@@ -19,10 +21,18 @@ define( [ 'screen/manager/NewScreenForm' ], function( NewScreenForm ) {
 
     this.mode = ko.observable( SCREEN_LIST_MODE );
 
+    this.manage = function( game ) {
+      self.game( game );
+    };
+
+    this.clear = function() {
+      self.game( null );
+    };
+
     this.newScreenForm = new NewScreenForm( {
       screenTypes : self.registeredScreenTypes,
       callback : function( newScreen ) {
-        self.screens.push( newScreen );
+        self.game().screens.push( newScreen );
       }
     } );
 
@@ -34,6 +44,7 @@ define( [ 'screen/manager/NewScreenForm' ], function( NewScreenForm ) {
       self.currentScreenBuilder( new getScreenBuilderForScreenType( screen )( screen ) );
       self.mode( SCREEN_EDIT_MODE );
     };
+
   };
 
   return ScreenManager;

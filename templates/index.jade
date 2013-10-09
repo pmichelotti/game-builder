@@ -13,7 +13,7 @@ html
     div.game-list-container( data-bind = 'visible : isGameListMode' )
       include gameList
     div.game-builder-container( data-bind = 'visible : isEditMode' )
-      div.game-builder( data-bind = 'with : currentGameBuilder' )
+      div.game-builder( data-bind = 'with : gameBuilder' )
         include gameBuilder
 
 

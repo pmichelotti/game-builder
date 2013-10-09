@@ -1,5 +1,5 @@
 div.screen-manager-container( data-bind = 'with : screenManager' )
-  div.screen-list-container.container.clearfix
+  div.screen-list-container.container.clearfix( data-bind = 'with : game' )
     ul.screen-list( data-bind = 'foreach : screens' )
       li.screen-list-item
         div.screen-list-button

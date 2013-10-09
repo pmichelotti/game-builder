@@ -1,21 +1,33 @@
-define( [ 'game/Game' ], function( Game ) {
+define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
 
   var DASHBOARD_MODE = "dashboard";
   var SCREEN_MANAGER_MODE = "screen-manager";
+  //var SPRITE_MANAGER_MODE = "sprite-manager";
 
-  var GameBuilder = function( game, options ) {
+  var GameBuilder = function( options ) {
 
     var self = this;
 
-    this.game = game;
+    this.game = ko.observable();
 
     this.mode = ko.observable( DASHBOARD_MODE );
 
     this.loading = ko.observable( false );
 
-    this.name = ko.observable( game.name );
-
     this.screenManager = options.screenManager;
+    //this.spriteManager = options.spriteManager;
+
+    this.setGame = function( game ) {
+      self.game( new EditableGame( game ) );
+      self.screenManager.manage( self.game() );
+      //self.spriteManager.manage( self.game() );
+    };
+
+    this.clear = function() {
+      self.game( null );
+      self.screenManager.clear();
+      //self.spriteManager.clear();
+    };
 
     this.openDashboard = function() {
       self.mode( DASHBOARD_MODE );
@@ -39,13 +51,7 @@ define( [ 'game/Game' ], function( Game ) {
 
     this.save = function() {
 
-      var id = game.id;
-      var name = self.name();
-
-
-      return new Game( id, {
-        name : name
-      } );
+      return self.game().save();
 
     };
 

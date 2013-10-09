@@ -6,9 +6,7 @@ define( [ 'game/builder/GameBuilder', 'application/NewGameForm' ], function( Gam
 
     var self = this;
 
-    var gameBuilderOptions = {
-      screenManager : options.screenManager
-    };
+    this.gameBuilder = options.gameBuilder;
 
     this.persistenceManager = options.persistenceManager;
 
@@ -23,10 +21,8 @@ define( [ 'game/builder/GameBuilder', 'application/NewGameForm' ], function( Gam
       }
     } );
 
-    this.currentGameBuilder = ko.observable();
-
     this.isEditMode = ko.computed( function() {
-      return !!self.currentGameBuilder();
+      return !!self.gameBuilder.game();
     } );
 
     this.isGameListMode = ko.computed( function() {
@@ -34,11 +30,11 @@ define( [ 'game/builder/GameBuilder', 'application/NewGameForm' ], function( Gam
     } );
 
     this.editGame = function( game ) {
-      self.currentGameBuilder( new GameBuilder( game, gameBuilderOptions ) );
+      self.gameBuilder.setGame( game );
     };
 
     this.gameListMode = function() {
-      self.currentGameBuilder( null );
+      self.gameBuilder.clear();
     };
 
     this.saveGame = function( game ) {
@@ -51,8 +47,8 @@ define( [ 'game/builder/GameBuilder', 'application/NewGameForm' ], function( Gam
     };
 
     this.saveGameBuilder = function() {
-      if ( self.currentGameBuilder() ) {
-        self.saveGame( self.currentGameBuilder().save() );
+      if ( self.gameBuilder ) {
+        self.saveGame( self.gameBuilder.save() );
       }
     };
 

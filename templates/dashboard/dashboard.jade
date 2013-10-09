@@ -1,5 +1,6 @@
 div.dashboard-container.container
-  h1.game-title( data-bind = 'text : name' )
+  h1.game-title( data-bind = 'with : game' )
+    span( data-bind = 'text : name' )
   div.row
     div.col-md-4
       div.dashboard-button-1( data-bind = 'click : openScreenManager' )
