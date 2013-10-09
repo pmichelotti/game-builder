@@ -1,4 +1,4 @@
-define( [], function() {
+define( [ 'game/Game' ], function( Game ) {
 
   var DASHBOARD_MODE = "dashboard";
   var SCREEN_MANAGER_MODE = "screen-manager";
@@ -6,6 +6,8 @@ define( [], function() {
   var GameBuilder = function( game, options ) {
 
     var self = this;
+
+    this.game = game;
 
     this.mode = ko.observable( DASHBOARD_MODE );
 
@@ -34,6 +36,19 @@ define( [], function() {
     this.isScreenManagerMode = ko.computed( function() {
       return self.mode() === SCREEN_MANAGER_MODE;
     } );
+
+    this.save = function() {
+
+      var id = game.id;
+      var name = self.name();
+
+
+      return new Game( id, {
+        name : name
+      } );
+
+    };
+
   };
 
   return GameBuilder;

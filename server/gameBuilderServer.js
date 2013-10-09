@@ -1,4 +1,5 @@
 var express = require( 'express' );
+var fs = require( 'fs' );
 var app = express();
 
 var persistenceManager = require( '../persistence/json/fileBased/jsonFilePersistence' );
@@ -72,6 +73,22 @@ var start = function( staticDirectory, viewsDirectory, gameDirectory ) {
       }
     } );
 
+  } );
+
+  app.get( '/games.json', function( req, res ) {
+
+    console.log( 'Requesting games list' );
+
+    fs.readdir( gameDirectory + '/games', function( error, files ) {
+      if ( error ) {
+        res.send( 500, error );
+        return;
+      }
+
+      console.log( 'Found games ' + files );
+
+      res.send( files );
+    } );
   } );
 
 

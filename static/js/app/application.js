@@ -1,5 +1,6 @@
 define( [
          'application/GameBuilderApplication',
+         'persistence/ServerPersistenceManager',
          'screen/manager/ScreenManager',
          'screen/manager/ScreenType',
          'screen/singleFrameScreen/SingleFrameScreen',
@@ -7,6 +8,7 @@ define( [
         ],
           function(
             GameBuilderApplication,
+            PersistenceManager,
             ScreenManager,
             ScreenType,
             SingleFrameScreen,
@@ -26,9 +28,12 @@ define( [
   } );
 
   var application = new GameBuilderApplication( {
-    screenManager : screenManager
+    screenManager : screenManager,
+    persistenceManager : new PersistenceManager( { gamePathPrefix : "/games" } )
   } );
 
   ko.applyBindings( application );
+
+  application.loadGames();
 
 } );

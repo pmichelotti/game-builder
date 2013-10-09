@@ -10,7 +10,10 @@ define( [ 'game/builder/GameBuilder', 'application/NewGameForm' ], function( Gam
       screenManager : options.screenManager
     };
 
+    this.persistenceManager = options.persistenceManager;
+
     this.loading = ko.observable( false );
+    this.saving = ko.observable( false );
 
     this.games = ko.observableArray( options.games || Array() );
 
@@ -37,6 +40,46 @@ define( [ 'game/builder/GameBuilder', 'application/NewGameForm' ], function( Gam
     this.gameListMode = function() {
       self.currentGameBuilder( null );
     };
+
+    this.saveGame = function( game ) {
+      self.saving( true );
+      if ( this.persistenceManager ) {
+        this.persistenceManager.saveGame( game, function( success, msg ) {
+          self.saving( false );
+        } );
+      }
+    };
+
+    this.saveGameBuilder = function() {
+      if ( self.currentGameBuilder() ) {
+        self.saveGame( self.currentGameBuilder().save() );
+      }
+    };
+
+    this.loadGames = function() {
+
+      self.persistenceManager.loadGames( function( success, games, failures ) {
+        if ( success ) {
+          games.forEach( function( curGame ) {
+            self.games.push( curGame );
+          } );
+        }
+        else {
+          console.log( 'Failures' );
+          console.log( failures );
+        }
+      } );
+
+    };
+
+    this.load = function( game ) {
+
+      if ( !game ) {
+        loadGames();
+        return;
+      }
+    };
+
 
   };
 

@@ -1,4 +1,4 @@
-define( [], function() {
+define( [ 'persistence/deserializationFunctions' ], function( deserializationFunctions ) {
 
   var PersistenceManager = function( options ) {
 
@@ -21,6 +21,9 @@ define( [], function() {
 
         method : "PUT",
         data : JSON.stringify( game.toJSON() ),
+        headers : {
+          "content-type" : "application/json"
+        },
         success : function() {
           alert( 'Saved Successfully' );
           self.saving( false );
@@ -34,7 +37,7 @@ define( [], function() {
 
       self.loading( true );
 
-      var gameUrl = self.gamePathPrefix + '/' + game.id + '.json';
+      var gameUrl = self.gamePathPrefix + '/' + gameId + '.json';
 
       $.ajax( gameUrl, {
 
@@ -42,10 +45,16 @@ define( [], function() {
         success : function( data ) {
 
           //build the game object and call the callback
+          var retGame = deserializationFunctions.makeGame( data );
+
+          callback( true, retGame );
+
           self.loading( false );
+
         },
         error : function() {
           alert( 'Error loading game ' + gameId );
+          callback( false );
           self.loading( false );
         }
       } );
@@ -76,10 +85,10 @@ define( [], function() {
           }
 
           if ( ( gamesLoaded.length + gamesFailed.length ) >= ( gamesToLoad.length ) ) {
-          if ( gamesFailed.length ) {
-            callback( false, gamesLoaded, gamesFailed );
-            return;
-          }
+            if ( gamesFailed.length ) {
+              callback( false, gamesLoaded, gamesFailed );
+              return;
+            }
 
             callback( true, gamesLoaded );
             return;
@@ -97,9 +106,16 @@ define( [], function() {
         success : function( data ) {
 
           gamesToLoad = data;
+
+          if ( gamesToLoad.length === 0 ) {
+            callback( true, [] );
+            return;
+          }
+
           data.forEach( function( curGameId ) {
             loadSingleGame( curGameId );
           } );
+
         },
         error : function() {
           alert ( 'An error was encountered loading the game list' );

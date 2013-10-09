@@ -49,6 +49,14 @@ var persist = function( obj, startDir, callback ) {
 
 var persistKeyedObject = function( obj, keys, startDir, callback ) {
 
+  /*
+   * Handle empty arrays and objects
+   */
+  if ( keys.length === 0 ) {
+    callback( true );
+    return;
+  }
+
   var keysSuccessful = Array();
   var keysFailed = Array();
 
