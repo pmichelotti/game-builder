@@ -1,80 +1,80 @@
-define( [ 'sprite/Size', 'sprite/VirtualPixel', 'util/uniqueIdUtil' ], function( Size, VirtualPixel, uniqueIdUtil ) {
+define( [ 'sprites/sprite/Size', 'sprites/sprite/VirtualPixel', 'utils/uniqueIdUtil' ], function( Size, VirtualPixel, uniqueIdUtil ) {
 
-	var SpriteFrame = function( id, options ) {
+  var SpriteFrame = function( id, options ) {
 
-		var self = this;
+    var self = this;
 
-		options = options || {};
+    options = options || {};
 
-		this.name = options.name || id;
-		this.id = id;
+    this.name = options.name || id;
+    this.id = id;
 
-		this.size = options.size || new Size( 10, 10 );
-		this.pixelSize = options.pixelSize || 10;
+    this.size = options.size || new Size( 10, 10 );
+    this.pixelSize = options.pixelSize || 10;
 
-		/*
-		 * A matrix of pixels.  The outer array represents x while the inner arrays represent y
-		 */
-		this.pixels = options.pixels;
+    /*
+     * A matrix of pixels.  The outer array represents x while the inner arrays represent y
+     */
+    this.pixels = options.pixels;
 
-		this.toJSON = function() {
+    this.toJSON = function() {
 
-			var retObject = {};
+      var retObject = {};
 
-			retObject[ 'id' ] = self.id;
-			retObject[ 'name' ] = self.name;
-			retObject[ 'size' ] = self.size.toJSON();
-			retObject[ 'pixelSize' ] = self.pixelSize;
+      retObject[ 'id' ] = self.id;
+      retObject[ 'name' ] = self.name;
+      retObject[ 'size' ] = self.size.toJSON();
+      retObject[ 'pixelSize' ] = self.pixelSize;
 
-			var pixelsJSON = Array();
+      var pixelsJSON = Array();
 
-			self.pixels.forEach( function( curColumn ) {
-				var pixelJSONColumn = Array();
+      self.pixels.forEach( function( curColumn ) {
+        var pixelJSONColumn = Array();
 
-				curColumn.forEach( function( curColumnItem ) {
-					pixelJSONColumn.push( curColumnItem.toJSON() );
-				} );
+        curColumn.forEach( function( curColumnItem ) {
+          pixelJSONColumn.push( curColumnItem.toJSON() );
+        } );
 
-				pixelsJSON.push( pixelJSONColumn );
-			} );
+        pixelsJSON.push( pixelJSONColumn );
+      } );
 
-			retObject[ 'pixels' ] = pixelsJSON;
+      retObject[ 'pixels' ] = pixelsJSON;
 
-			return retObject;
-		};
+      return retObject;
+    };
 
-	};
+  };
 
-	SpriteFrame.createAsCopy = function( options ) {
+  SpriteFrame.createAsCopy = function( options ) {
 
-		var name = options.name || options.spriteFrame.name + " copy";
-		var id = options.id || uniqueIdUtil( name );
-		var size = new Size( options.spriteFrame.size.width, options.spriteFrame.size.height );
-		var pixelSize = options.spriteFrame.pixelSize;
+    var name = options.name || options.spriteFrame.name + " copy";
+    var id = options.id || uniqueIdUtil( name );
+    var size = new Size( options.spriteFrame.size.width, options.spriteFrame.size.height );
+    var pixelSize = options.spriteFrame.pixelSize;
 
-		var pixels = Array();
+    var pixels = Array();
 
-		for ( var curX = 0; curX < size.width; curX++ ) {
-			var curYArray = Array();
+    for ( var curX = 0; curX < size.width; curX++ ) {
+      var curYArray = Array();
 
-			for ( var curY = 0; curY < size.height; curY++ ) {
-				var curPixel = options.spriteFrame.pixels[ curX ][ curY ];
+      for ( var curY = 0; curY < size.height; curY++ ) {
+        var curPixel = options.spriteFrame.pixels[ curX ][ curY ];
 
-				curYArray.push( VirtualPixel.createAsCopy( curPixel ) );
-			}
+        curYArray.push( VirtualPixel.createAsCopy( curPixel ) );
+      }
 
-			pixels.push( curYArray );
-		}
+      pixels.push( curYArray );
+    }
 
-		return new SpriteFrame( id, {
-			name : name,
-			size : size,
-			pixelSize : pixelSize,
-			pixels : pixels
-		} );
+    return new SpriteFrame( id, {
+      name : name,
+      size : size,
+      pixelSize : pixelSize,
+      pixels : pixels
+    } );
 
-	};
+  };
 
-	return SpriteFrame;
+  return SpriteFrame;
 
 } );

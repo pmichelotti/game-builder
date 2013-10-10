@@ -2,7 +2,7 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
 
   var DASHBOARD_MODE = "dashboard";
   var SCREEN_MANAGER_MODE = "screen-manager";
-  //var SPRITE_MANAGER_MODE = "sprite-manager";
+  var SPRITE_MANAGER_MODE = "sprite-manager";
 
   var GameBuilder = function( options ) {
 
@@ -15,18 +15,18 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
     this.loading = ko.observable( false );
 
     this.screenManager = options.screenManager;
-    //this.spriteManager = options.spriteManager;
+    this.spriteManager = options.spriteManager;
 
     this.setGame = function( game ) {
       self.game( new EditableGame( game ) );
       self.screenManager.manage( self.game() );
-      //self.spriteManager.manage( self.game() );
+      self.spriteManager.manage( self.game() );
     };
 
     this.clear = function() {
       self.game( null );
       self.screenManager.clear();
-      //self.spriteManager.clear();
+      self.spriteManager.clear();
     };
 
     this.openDashboard = function() {
@@ -35,6 +35,10 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
 
     this.openScreenManager = function() {
       self.mode( SCREEN_MANAGER_MODE );
+    };
+
+    this.openSpriteManager = function() {
+      self.mode( SPRITE_MANAGER_MODE );
     };
 
     this.isDashboardMode = ko.computed( function() {
@@ -47,6 +51,10 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
 
     this.isScreenManagerMode = ko.computed( function() {
       return self.mode() === SCREEN_MANAGER_MODE;
+    } );
+
+    this.isSpriteManagerMode = ko.computed( function() {
+      return self.mode() === SPRITE_MANAGER_MODE;
     } );
 
     this.save = function() {

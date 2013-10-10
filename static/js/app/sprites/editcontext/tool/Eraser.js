@@ -1,27 +1,27 @@
-define( [ 'sprite/VirtualPixel' ], function( VirtualPixel ) {
+define( [ 'sprites/sprite/VirtualPixel' ], function( VirtualPixel ) {
 
-	var Eraser = function() {
+  var Eraser = function() {
 
-		this.name = "Eraser";
-		this.id = "eraser-tool";
-		this.icon = "icon-eraser";
+    this.name = "Eraser";
+    this.id = "eraser-tool";
+    this.icon = "icon-eraser";
 
-		this.listeners = {
-			"click" : function( event, editContext, eventEliciter, parameters ) {
-				/*
-				 * Make sure that the event eliciter has a draw method
-				 */
-				if ( eventEliciter && eventEliciter.draw && parameters.pixel ) {
-					var pixel = parameters.pixel;
+    this.listeners = {
+      "click" : function( event, editContext, eventEliciter, parameters ) {
+        /*
+         * Make sure that the event eliciter has a draw method
+         */
+        if ( eventEliciter && eventEliciter.draw && parameters.pixel ) {
+          var pixel = parameters.pixel;
 
-					var newPixel = new VirtualPixel( { x : pixel.position.x, y : pixel.position.y }, '#FFFFFF', 0 );
-					eventEliciter.draw( newPixel );
-				}
-			}
-		};
+          var newPixel = new VirtualPixel( { x : pixel.position.x, y : pixel.position.y }, '#FFFFFF', 0 );
+          eventEliciter.draw( newPixel );
+        }
+      }
+    };
 
-	};
+  };
 
-	return Eraser;
+  return Eraser;
 
 } );

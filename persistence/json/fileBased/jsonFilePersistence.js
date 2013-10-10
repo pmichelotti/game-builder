@@ -217,6 +217,11 @@ var deserializeObject = function( objectPath, keys, callback ) {
   var keysDeserialized = Array();
   var keysFailed = Array();
 
+  if ( keys.length === 0 ) {
+    callback( true, {} );
+    return;
+  }
+
   keys.forEach( function( curKey ) {
     deserializeValue( objectPath + '/' + curKey.folder, function( success, curVal ) {
       if ( success ) {

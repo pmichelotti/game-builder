@@ -11,6 +11,7 @@ define( [], function() {
     this.name = options.name || id;
 
     this.screens = options.screens || Array();
+    this.sprites = options.sprites || Array();
 
     this.toJSON = function() {
 
@@ -23,6 +24,12 @@ define( [], function() {
 
       self.screens.forEach( function( curScreen ) {
         retObject[ 'screens' ].push( curScreen.toJSON() );
+      } );
+
+      retObject[ 'sprites' ] = Array();
+
+      self.sprites.forEach( function( curSprite ) {
+        retObject[ 'sprites' ].push( curSprite.toJSON() );
       } );
 
       return retObject;

@@ -9,6 +9,7 @@ define( [ 'game/Game' ], function( Game ) {
     this.name = ko.observable( game.name );
 
     this.screens = ko.observableArray( game.screens || Array() );
+    this.sprites = ko.observableArray( game.sprites || Array() );
 
     this.save = function() {
       var gameOptions = {};
@@ -16,6 +17,8 @@ define( [ 'game/Game' ], function( Game ) {
       gameOptions[ 'name' ] = self.name();
 
       gameOptions[ 'screens' ] = self.screens();
+
+      gameOptions[ 'sprites' ] = self.sprites();
 
       return new Game( self.game.id, gameOptions );
 

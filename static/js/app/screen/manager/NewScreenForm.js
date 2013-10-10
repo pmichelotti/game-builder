@@ -1,4 +1,4 @@
-define( [], function() {
+define( [ 'utils/uniqueIdUtil' ], function( uniqueIdUtil ) {
 
   var NewScreenForm = function( options ) {
 

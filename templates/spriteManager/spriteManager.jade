@@ -1,0 +1,15 @@
+div.sprite-manager-container( data-bind = 'with : spriteManager' )
+  div.sprite-list-container( data-bind = 'visible : isSpriteListMode' )
+    div.sprite-list-inner-container( data-bind = 'with : game' )
+      ul( data-bind = 'foreach : sprites' )
+        li
+          div.sprite-name-and-image
+            h4( data-bind = 'text : name' )
+  div.new-sprite-form-container.container( data-bind = 'with : newSpriteForm' )
+    form.new-sprite-form( data-bind = 'submit : submit' )
+      label Name
+        input( type = 'text', name = 'name', data-bind = 'value : name' )
+      label Id
+        input( type = 'text', name = 'id', data-bind = 'value : id, attr : { placeholder : idPlaceholder }' )
+      button.btn.btn-primary( type = 'submit' ) New Sprite
+

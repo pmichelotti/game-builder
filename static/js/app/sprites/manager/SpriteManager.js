@@ -1,21 +1,31 @@
-define( [], function() {
-
-  var SPRITE_LIST_MODE = 'sprite-list';
+define( [ 'sprites/manager/NewSpriteForm' ], function( NewSpriteForm ) {
 
   var SpriteManager = function( options ) {
 
     var self = this;
 
-    this.mode = ko.observable( SPRITE_LIST_MODE );
+    this.game = ko.observable();
 
-    this.currentSpriteBuilder = ko.observable();
-
-    this.sprites = ko.observableArray( options.sprites || Array() );
+    this.manage = function( game ) {
+      self.game( game );
+    };
 
     this.spriteEditor = options.spriteEditor;
+    this.spriteRenderer = options.spriteRenderer;
+
+    this.newSpriteForm = new NewSpriteForm( {
+      callback : function( newSprite ) {
+        self.game().sprites.push( newSprite );
+      }
+    } );
 
     this.editSprite = function( sprite ) {
       self.spriteEditor.setSprite( sprite );
+    };
+
+    this.clear = function() {
+      self.game( null );
+      self.spriteEditor.clear();
     };
 
     this.isSpriteEditMode = ko.computed( function() {

@@ -5,7 +5,8 @@ define( [
          'screen/manager/ScreenManager',
          'screen/manager/ScreenType',
          'screen/singleFrameScreen/SingleFrameScreen',
-         'screen/singleFrameScreen/SingleFrameScreenBuilder'
+         'screen/singleFrameScreen/SingleFrameScreenBuilder',
+         'setup/spriteManagerSetup'
         ],
           function(
             GameBuilderApplication,
@@ -14,7 +15,8 @@ define( [
             ScreenManager,
             ScreenType,
             SingleFrameScreen,
-            SingleFrameScreenBuilder
+            SingleFrameScreenBuilder,
+            spriteManagerSetup
           ) {
 
   /*
@@ -32,44 +34,11 @@ define( [
     types : screenTypes
   } );
 
-  /*
-   * Sprite Manager Setup
-   *
-  var spriteRenderer = new DOMSpriteRenderer();
-
-  var editPanel = new EditPanel( {
-    spriteRenderer : spriteRenderer
-  } );
-
-  var viewPanel = new ViewPanel( {
-    spriteRenderer : spriteRenderer
-  } );
-
-  var pencil = new Pencil();
-  var eraser = new Eraser();
-  var eyeDropper = new EyeDropper();
-
-  var pallet = new Pallet();
-
-
-  var editContext = new EditContext( {
-      editPanel : editPanel,
-      viewPanel : viewPanel,
-      tools : [ pencil, eraser, eyeDropper ],
-      pallet : pallet
-  } );
-
-  var spriteEditor = new SpriteEditor( {
-    spriteFrameEditContext : editContext
-  } );
-
-  var spriteManagerOptions = {
-
-  };
-  */
+  var spriteManager = spriteManagerSetup();
 
   var gameBuilder = new GameBuilder( {
-    screenManager : screenManager
+    screenManager : screenManager,
+    spriteManager : spriteManager
   } );
 
   var application = new GameBuilderApplication( {

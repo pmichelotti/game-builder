@@ -1,69 +1,69 @@
-define( [ 'sprite/SpriteFrameGroup' ], function( SpriteFrameGroup ) {
+define( [ 'sprites/sprite/SpriteFrameGroup' ], function( SpriteFrameGroup ) {
 
-	var EditableSpriteFrameGroup = function( spriteFrameGroup ) {
+  var EditableSpriteFrameGroup = function( spriteFrameGroup ) {
 
-		var self = this;
+    var self = this;
 
-		this.spriteFrameGroup = spriteFrameGroup;
+    this.spriteFrameGroup = spriteFrameGroup;
 
-		this.name = ko.observable( spriteFrameGroup.name );
+    this.name = ko.observable( spriteFrameGroup.name );
 
-		this.spriteFrames = ko.observableArray( spriteFrameGroup.spriteFrames );
+    this.spriteFrames = ko.observableArray( spriteFrameGroup.spriteFrames );
 
-		this.addSpriteFrame = function( spriteFrame ) {
-			self.spriteFrames.push( spriteFrame );
+    this.addSpriteFrame = function( spriteFrame ) {
+      self.spriteFrames.push( spriteFrame );
 
-			return spriteFrame;
-		};
+      return spriteFrame;
+    };
 
-		this.removeSpriteFrame = function( spriteFrame ) {
-			var newSpriteList = Array();
+    this.removeSpriteFrame = function( spriteFrame ) {
+      var newSpriteList = Array();
 
-			self.spriteFrames().forEach( function( curSpriteFrame ) {
-				if ( curSpriteFrame !== spriteFrame ) {
-					newSpriteList.push( curSpriteFrame );
-				}
-			} );
+      self.spriteFrames().forEach( function( curSpriteFrame ) {
+        if ( curSpriteFrame !== spriteFrame ) {
+          newSpriteList.push( curSpriteFrame );
+        }
+      } );
 
-			self.spriteFrames.removeAll();
+      self.spriteFrames.removeAll();
 
-			newSpriteList.forEach( function( curSpriteFrame ) {
-				self.spriteFrames.push( curSpriteFrame );
-			} );
+      newSpriteList.forEach( function( curSpriteFrame ) {
+        self.spriteFrames.push( curSpriteFrame );
+      } );
 
-			return spriteFrame;
-		};
+      return spriteFrame;
+    };
 
-		this.updateSpriteFrame = function( spriteFrame ) {
-			var newSpriteList = Array();
+    this.updateSpriteFrame = function( spriteFrame ) {
+      var newSpriteList = Array();
 
-			self.spriteFrames().forEach( function( curSpriteFrame ) {
-				if ( curSpriteFrame.id === spriteFrame.id ) {
-					newSpriteList.push( spriteFrame );
-				}
-				else {
-					newSpriteList.push( curSpriteFrame );
-				}
-			} );
+      self.spriteFrames().forEach( function( curSpriteFrame ) {
+        if ( curSpriteFrame.id === spriteFrame.id ) {
+          newSpriteList.push( spriteFrame );
+        }
+        else {
+          newSpriteList.push( curSpriteFrame );
+        }
+      } );
 
-			self.spriteFrames.removeAll();
+      self.spriteFrames.removeAll();
 
-			newSpriteList.forEach( function( curSpriteFrame ) {
-				self.spriteFrames.push( curSpriteFrame );
-			} );
+      newSpriteList.forEach( function( curSpriteFrame ) {
+        self.spriteFrames.push( curSpriteFrame );
+      } );
 
-			return spriteFrame;
-		};
+      return spriteFrame;
+    };
 
-		this.save = function() {
-			return new SpriteFrameGroup( self.spriteFrameGroup.id, {
-				name : self.name(),
-				spriteFrames : self.spriteFrames()
-			} );
-		};
+    this.save = function() {
+      return new SpriteFrameGroup( self.spriteFrameGroup.id, {
+        name : self.name(),
+        spriteFrames : self.spriteFrames()
+      } );
+    };
 
-	};
+  };
 
-	return EditableSpriteFrameGroup;
+  return EditableSpriteFrameGroup;
 
 } );
