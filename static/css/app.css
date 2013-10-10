@@ -11,6 +11,9 @@
 .margin-right {
   margin-right: 15px;
 }
+.margin-left {
+  margin-left: 15px;
+}
 /* FORM STYLES */
 /* BODY STYLES */
 body {
@@ -83,9 +86,28 @@ body {
   width: 50%;
   margin-left: 25px;
 }
+.game-list-container .new-game-form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
 .game-list-container .new-game-form label select {
   font-size: 2.5em;
   margin-left: 25px;
+}
+.game-list-container .new-game-form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.game-list-container .new-game-form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.game-list-container .new-game-form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 .game-list-container .new-game-form button[type="submit"] {
   font-size: 2.5em;
@@ -268,10 +290,238 @@ body {
   width: 50%;
   margin-left: 25px;
 }
+.screen-manager-container .new-screen-form-container form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
 .screen-manager-container .new-screen-form-container form label select {
   font-size: 2.5em;
   margin-left: 25px;
 }
+.screen-manager-container .new-screen-form-container form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.screen-manager-container .new-screen-form-container form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.screen-manager-container .new-screen-form-container form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
 .screen-manager-container .new-screen-form-container form button[type="submit"] {
   font-size: 2.5em;
+}
+/* SPRITE MANAGER */
+.sprite-manager-container {
+  margin-top: 25px;
+}
+.sprite-manager-container ul.sprite-list {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.sprite-manager-container ul.sprite-list .sprite-name-and-image {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #00a8c6;
+  border: 1px solid #009fbc;
+  color: #f9f2e7;
+  cursor: pointer;
+  width: auto;
+  float: left;
+  margin: 0px 25px 25px 0px;
+}
+.sprite-manager-container ul.sprite-list .sprite-name-and-image:hover {
+  background-color: #00bee0;
+}
+.sprite-manager-container ul.sprite-list .sprite-name-and-image:active {
+  background-color: #0092ad;
+  box-shadow: 0px 0px 2px 4px #007d93 inset;
+}
+.sprite-manager-container ul.sprite-list .sprite-name-and-image h4 {
+  font-size: 2em;
+  color: #f9f2e7;
+}
+.sprite-manager-container ul.sprite-list .sprite-name-and-image .sprite-first-frame-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+.sprite-manager-container ul.sprite-list .sprite-name-and-image .sprite-first-frame-container .rendered-sprite-container {
+  background-color: #ffffff;
+}
+.sprite-manager-container ul.sprite-list .sprite-name-and-image .sprite-details {
+  font-size: 1em;
+  color: #00d3f9;
+}
+.sprite-manager-container ul.sprite-list .sprite-name-and-image .sprite-details p {
+  margin-bottom: 2px;
+}
+.sprite-manager-container ul.sprite-list .sprite-name-and-image ul.sprite-control-list {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.sprite-manager-container ul.sprite-list .sprite-name-and-image ul.sprite-control-list li {
+  float: left;
+  margin-left: 15px;
+}
+.sprite-manager-container .new-sprite-form-container {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #40c0cb;
+  border: 1px solid #38bdc9;
+  color: #f9f2e7;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sprite-manager-container .new-sprite-form-container:hover {
+  background-color: #54c7d0;
+}
+.sprite-manager-container .new-sprite-form-container:active {
+  background-color: #34b3be;
+  box-shadow: 0px 0px 2px 4px #2ea0aa inset;
+}
+.sprite-manager-container .new-sprite-form-container form label {
+  font-size: 2.5em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.sprite-manager-container .new-sprite-form-container form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.sprite-manager-container .new-sprite-form-container form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.sprite-manager-container .new-sprite-form-container form label select {
+  font-size: 2.5em;
+  margin-left: 25px;
+}
+.sprite-manager-container .new-sprite-form-container form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.sprite-manager-container .new-sprite-form-container form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.sprite-manager-container .new-sprite-form-container form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.sprite-manager-container .new-sprite-form-container form button[type="submit"] {
+  font-size: 2.5em;
+}
+/* SPRITE EDITOR */
+.sprite-editor-container .sprite-editor-navigation {
+  background-color: #fbf6ef;
+  padding: 10px 25px 10px 0px;
+}
+.sprite-editor-container .sprite-editor-navigation h4 {
+  color: #e0bb81;
+  display: inline;
+  margin-right: 5px;
+}
+.sprite-editor-container .sprite-editor-navigation ul.sprite-editor-navigation-buttons {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.sprite-editor-container .sprite-editor-navigation ul.sprite-editor-navigation-buttons li {
+  float: left;
+  margin-left: 15px;
+}
+.sprite-editor-container .sprite-tool-container {
+  background-color: #fbf6ef;
+}
+.sprite-editor-container .sprite-tool-container .sprite-frame-list-container ul.sprite-frame-list {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.sprite-editor-container .sprite-tool-container .sprite-frame-list-container ul.sprite-frame-list ul.sprite-frame-controls {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.sprite-editor-container .sprite-tool-container .sprite-frame-list-container ul.sprite-frame-list ul.sprite-frame-controls li {
+  float: left;
+  margin: 0px 5px 10px 0px;
+}
+.sprite-editor-container .sprite-tool-container .new-sprite-frame-form-container {
+  padding: 10px;
+}
+.sprite-editor-container .sprite-tool-container .new-sprite-frame-form-container form label {
+  font-size: 1.1em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.sprite-editor-container .sprite-tool-container .new-sprite-frame-form-container form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.sprite-editor-container .sprite-tool-container .new-sprite-frame-form-container form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.sprite-editor-container .sprite-tool-container .new-sprite-frame-form-container form label select {
+  font-size: 1.1em;
+  margin-left: 25px;
+}
+.sprite-editor-container .sprite-tool-container .new-sprite-frame-form-container form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.sprite-editor-container .sprite-tool-container .new-sprite-frame-form-container form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.sprite-editor-container .sprite-tool-container .new-sprite-frame-form-container form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.sprite-editor-container .sprite-tool-container .new-sprite-frame-form-container form button[type="submit"] {
+  font-size: 1.1em;
+}
+.sprite-editor-container .sprite-edit-context .sprite-edit-panel {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  overflow: scroll;
+  position: relative;
+}
+.sprite-editor-container .sprite-edit-context .sprite-edit-panel .rendered-sprite-container {
+  background-image: url('../img/sprite-editor-background.png');
+}
+.sprite-editor-container .sprite-edit-context ul.sprite-editor-tool-list {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+  margin-top: 15px;
+}
+.sprite-editor-container .sprite-edit-context ul.sprite-editor-tool-list li {
+  margin-bottom: 15px;
+}
+.sprite-editor-container .sprite-edit-context ul.sprite-editor-tool-list li button {
+  width: 75%;
+}
+.sprite-editor-container .sprite-edit-context form.pallet-form input {
+  width: 75%;
+  margin-bottom: 15px;
 }

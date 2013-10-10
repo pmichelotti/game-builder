@@ -6,6 +6,11 @@ define( [ 'sprites/sprite/EditableSprite', 'sprites/sprite/Size', 'utils/uniqueI
 
     this.sprite = ko.observable();
 
+    this.spriteToolsOpen = ko.observable( true );
+    this.spriteToolsClosed = ko.computed( function() {
+      return !self.spriteToolsOpen();
+    } );
+
     this.spriteFrameEditContext = options.spriteFrameEditContext;
 
     this.hasCurrentSprite = ko.computed( function() {
@@ -100,6 +105,19 @@ define( [ 'sprites/sprite/EditableSprite', 'sprites/sprite/Size', 'utils/uniqueI
       self.spriteFrameEditContext.clear();
       self.newFrameForm.clear();
       self.newGroupForm.clear();
+      self.spriteToolsOpen( true );
+    };
+
+    this.closeSpriteTools = function() {
+      self.spriteToolsOpen( false );
+    };
+
+    this.openSpriteTools = function() {
+      self.spriteToolsOpen( true );
+    };
+
+    this.toggleSpriteTools = function() {
+      self.spriteToolsOpen( !self.spriteToolsOpen() );
     };
   };
 

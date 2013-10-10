@@ -1,4 +1,4 @@
-define( [ 'sprites/manager/NewSpriteForm' ], function( NewSpriteForm ) {
+define( [ 'sprites/manager/NewSpriteForm', 'sprites/manager/panel/SimpleViewPanel' ], function( NewSpriteForm, SimpleViewPanel ) {
 
   var SpriteManager = function( options ) {
 
@@ -19,8 +19,35 @@ define( [ 'sprites/manager/NewSpriteForm' ], function( NewSpriteForm ) {
       }
     } );
 
+    this.spriteViewContext = function( sprite ) {
+      var editContext = {
+        spriteFrame : function() {
+          if ( sprite.spriteFrames.length ) {
+            return sprite.spriteFrames[ 0 ];
+          }
+
+          return null;
+        }
+      };
+
+      return new SimpleViewPanel( {
+        spriteRenderer : self.spriteRenderer,
+        context : editContext
+      } );
+    };
+
     this.editSprite = function( sprite ) {
       self.spriteEditor.setSprite( sprite );
+    };
+
+    this.deleteSprite = function( sprite ) {
+      alert( 'This is where sprite deletion would go' );
+    };
+
+    this.saveSprite = function() {
+      if ( self.spriteEditor.hasCurrentSprite() ) {
+        self.game().sprites.replace( self.spriteEditor.saveSprite() );
+      }
     };
 
     this.clear = function() {

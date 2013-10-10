@@ -1,0 +1,108 @@
+.sprite-editor-container {
+
+  .sprite-editor-navigation {
+    background-color : lighten( @whitetrash, 2% );
+    padding: 10px 25px 10px 0px;
+
+    h4 {
+      color : darken( @whitetrash, 25% );
+      display : inline;
+      margin-right : 5px;
+    }
+
+    ul.sprite-editor-navigation-buttons {
+      .unstyled-list;
+
+      li {
+
+        float : left;
+        .margin-left;
+
+      }
+
+    }
+
+  }
+
+  .sprite-tool-container {
+
+    background-color : lighten( @whitetrash, 2% );
+
+    .sprite-frame-list-container {
+      ul.sprite-frame-list {
+
+        .unstyled-list;
+
+        ul.sprite-frame-controls {
+
+          .unstyled-list;
+
+          li {
+            float : left;
+            margin : 0px 5px 10px 0px;
+          }
+
+        }
+
+      }
+
+    }
+
+    .new-sprite-frame-form-container {
+
+      padding : 10px;
+
+      form {
+
+        .thick-form( 1.1em )
+
+      }
+
+    }
+
+  }
+
+  .sprite-edit-context {
+
+    .sprite-edit-panel {
+
+      margin-top : 15px;
+      margin-bottom : 10px;
+      overflow : scroll;
+      position : relative;
+
+      .rendered-sprite-container {
+        background-image:url( '../img/sprite-editor-background.png' );
+      }
+
+    }
+
+    ul.sprite-editor-tool-list {
+
+      .unstyled-list;
+
+      margin-top : 15px;
+
+      li {
+        margin-bottom : 15px;
+
+        button {
+          width : 75%;
+        }
+
+      }
+
+    }
+
+    form.pallet-form {
+
+      input {
+        width : 75%;
+        margin-bottom : 15px;
+      }
+
+    }
+
+  }
+
+}

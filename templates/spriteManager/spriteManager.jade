@@ -1,15 +1,33 @@
 div.sprite-manager-container( data-bind = 'with : spriteManager' )
   div.sprite-list-container( data-bind = 'visible : isSpriteListMode' )
-    div.sprite-list-inner-container( data-bind = 'with : game' )
-      ul( data-bind = 'foreach : sprites' )
+    div.sprite-list-inner-container.container.clearfix( data-bind = 'with : game' )
+      ul.sprite-list( data-bind = 'foreach : sprites' )
         li
-          div.sprite-name-and-image
+          div.sprite-name-and-image.clearfix
             h4( data-bind = 'text : name' )
-  div.new-sprite-form-container.container( data-bind = 'with : newSpriteForm' )
-    form.new-sprite-form( data-bind = 'submit : submit' )
-      label Name
-        input( type = 'text', name = 'name', data-bind = 'value : name' )
-      label Id
-        input( type = 'text', name = 'id', data-bind = 'value : id, attr : { placeholder : idPlaceholder }' )
-      button.btn.btn-primary( type = 'submit' ) New Sprite
-
+            div.sprite-first-frame-container( data-bind = 'if : frameCount' )
+              div( data-bind = 'spritearea : $parents[1].spriteViewContext( $data )' )
+            div.sprite-details.pull-left
+              p
+                span( data-bind = 'text : frameCount' )
+                |  frames
+              p
+                span( data-bind = 'text : frameGroupCount' )
+                |  groups
+            div.sprite-controls.pull-right
+              ul.sprite-control-list
+                li
+                  button.btn.btn-primary( data-bind = 'click : $parents[1].editSprite' )
+                    i.icon.icon-large.icon-edit
+                li
+                  button.btn.btn-warning( data-bind = 'click : $parents[1].deleteSprite' )
+                    i.icon.icon-large.icon-trash
+    div.new-sprite-form-container.container( data-bind = 'with : newSpriteForm' )
+      form.new-sprite-form( data-bind = 'submit : submit' )
+        label Name
+          input( type = 'text', name = 'name', data-bind = 'value : name' )
+        label Id
+          input( type = 'text', name = 'id', data-bind = 'value : id, attr : { placeholder : idPlaceholder }' )
+        button.btn.btn-primary( type = 'submit' ) New Sprite
+  div.sprite-editor( data-bind = 'visible : isSpriteEditMode' )
+    include spriteEditor

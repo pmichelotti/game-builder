@@ -9,7 +9,8 @@ define( [ 'game/Game' ], function( Game ) {
     this.name = ko.observable( game.name );
 
     this.screens = ko.observableArray( game.screens || Array() );
-    this.sprites = ko.observableArray( game.sprites || Array() );
+    this.sprites = ko.observableArray( game.sprites || Array() ).extend( { replacable : true } );
+
 
     this.save = function() {
       var gameOptions = {};

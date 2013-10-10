@@ -1,4 +1,11 @@
-define( [ 'game/Game', 'sprites/sprite/Sprite', 'screen/singleFrameScreen/SingleFrameScreen' ], function( Game, Sprite, SingleFrameScreen ) {
+define( [
+          'game/Game',
+          'persistence/spriteDeserializationFunctions',
+          'screen/singleFrameScreen/SingleFrameScreen' ],
+          function(
+              Game,
+              spriteFunctions,
+              SingleFrameScreen ) {
 
   var makeScreen = function( json ) {
       //TODO : Need something to deserialize each screen type
@@ -6,10 +13,7 @@ define( [ 'game/Game', 'sprites/sprite/Sprite', 'screen/singleFrameScreen/Single
 
   };
 
-  var makeSprite = function( json ) {
-    //TODO : FInish
-    return new Sprite( json.id, { name : json.name } );
-  };
+
 
   var makeGame = function( json ) {
 
@@ -29,19 +33,15 @@ define( [ 'game/Game', 'sprites/sprite/Sprite', 'screen/singleFrameScreen/Single
 
     if ( json.sprites ) {
       json.sprites.forEach( function( curSpriteJson ) {
-        gameOptions[ 'sprites' ].push( makeSprite( curSpriteJson ) );
+        gameOptions[ 'sprites' ].push( spriteFunctions.makeSprite( curSpriteJson ) );
       } );
     }
     return new Game( json.id, gameOptions );
 
   };
 
-
-
   var deserializationFunctions = {
-      makeGame : makeGame,
-      makeScreen : makeScreen
-
+      makeGame : makeGame
   };
 
   return deserializationFunctions;

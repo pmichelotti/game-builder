@@ -1,0 +1,67 @@
+div.sprite-editor-container.container.clearfix( data-bind = 'with : spriteEditor' )
+  div.sprite-editor-navigation.row.clearfix
+    div.pull-right
+      h4( data-bind = 'with : sprite' )
+        span( data-bind = 'text : name' )
+      button.btn.btn-default( data-bind = 'click : toggleSpriteTools' )
+        i.icon.icon-large.icon-chevron-down( data-bind = 'visible : spriteToolsClosed' )
+        i.icon.icon-large.icon-chevron-up( data-bind = 'visible : spriteToolsOpen' )
+    ul.sprite-editor-navigation-buttons
+      li
+        button.btn.btn-default.icon.icon-large.icon-chevron-left( data-bind = 'click : clear' )
+      li
+        button.btn.btn-primary.icon.icon-large.icon-save( data-bind = 'click : $parent.saveSprite' )
+
+  div.sprite-tool-container.row( data-bind = 'visible : spriteToolsOpen' )
+    div.col-md-3
+      div.sprite-frame-list-container( data-bind = 'with : sprite' )
+        h5 Frames
+        ul.sprite-frame-list( data-bind = 'foreach : spriteFrames' )
+          li
+            em( data-bind = 'text : name' )
+            ul.sprite-frame-controls.clearfix
+              li
+                button.btn.btn-primary( data-bind = 'click : $parents[1].editFrame' )
+                  i.icon-large.icon-edit
+              li
+                button.btn.btn-primary( data-bind = 'click : $parents[1].copyFrame' )
+                  i.icon-large.icon-copy
+              li
+                button.btn.btn-warning( data-bind = 'click : $parents[1].deleteFrame' )
+                  i.icon-large.icon-trash
+    div.col-md-3
+      div.new-sprite-frame-form-container( data-bind = 'with : newFrameForm' )
+        form( data-bind = 'submit : submit' )
+          label Name
+            input( type = 'text', name = 'name', data-bind = 'value : name' )
+          fieldset.inline
+            label W
+              input( type = 'number', name = 'width', data-bind = 'value : width' )
+            label H
+              input( type = 'number', name = 'height', data-bind = 'value : height' )
+          label PX
+            input( type = 'number', name = 'pixelSize', data-bind = 'value : pixelSize' )
+          button.btn.btn-primary( type = 'submit' ) New Frame
+    div.col-md-3
+      div.sprite-group-container
+    div.col-md-3
+      div.new-sprite-group-container
+  div.sprite-edit-context( data-bind = 'with : spriteFrameEditContext' )
+    div.row
+      div.col-md-11
+        div.sprite-edit-panel( data-bind = 'spritearea : editPanel' )
+        div.sprite-frame-tool-bar
+          span( data-bind = 'with : spriteFrame' ) Editing
+            em( data-bind = 'text : name' )
+      div.col-md-1
+        ul.sprite-editor-tool-list
+          li
+            button.btn.btn-large.btn-success( data-bind = 'click : $parent.saveCurrentSpriteFrame' )
+              i.icon.icon-large.icon-save
+        ul.sprite-editor-tool-list( data-bind = 'foreach : tools' )
+          li
+            button.btn.btn-large.btn-default( data-bind = 'click : $parent.currentTool, attr : { disabled : $parent.currentTool() === $data }' )
+              i( data-bind = 'attr : { class : "icon icon-large " + icon }' )
+        form.pallet-form( data-bind = 'with : pallet' )
+          input( type = 'color', name = 'color', data-bind = 'value : color' )
+          input( type = 'number', name = 'opacity', min = '0', max = '1', step = '0.1', data-bind = 'value : opacity' )
