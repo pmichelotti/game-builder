@@ -1,11 +1,13 @@
 define( [
           'game/Game',
           'persistence/spriteDeserializationFunctions',
-          'screen/singleFrameScreen/SingleFrameScreen' ],
+          'screen/singleFrameScreen/SingleFrameScreen', 
+          'persistence/interactionDeserializationFunctions' ],
           function(
               Game,
               spriteFunctions,
-              SingleFrameScreen ) {
+              SingleFrameScreen, 
+              interactionFunctions) {
 
   var makeScreen = function( json ) {
       //TODO : Need something to deserialize each screen type
@@ -36,6 +38,15 @@ define( [
         gameOptions[ 'sprites' ].push( spriteFunctions.makeSprite( curSpriteJson ) );
       } );
     }
+
+    gameOptions[ 'interactions' ] = Array();
+    
+    if ( json.interactions ) {
+      json.interactions.forEach( function( curInteractionJson ) {
+        gameOptions[ 'interactions' ].push( interactionFunctions.makeInteraction( curInteractionJson ) );
+      } );
+    }
+    
     return new Game( json.id, gameOptions );
 
   };

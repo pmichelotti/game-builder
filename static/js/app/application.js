@@ -6,7 +6,8 @@ define( [
          'screen/manager/ScreenType',
          'screen/singleFrameScreen/SingleFrameScreen',
          'screen/singleFrameScreen/SingleFrameScreenBuilder',
-         'setup/spriteManagerSetup'
+         'setup/spriteManagerSetup', 
+         'setup/interactionManagerSetup'
         ],
           function(
             GameBuilderApplication,
@@ -16,7 +17,8 @@ define( [
             ScreenType,
             SingleFrameScreen,
             SingleFrameScreenBuilder,
-            spriteManagerSetup
+            spriteManagerSetup, 
+            interactionManagerSetup
           ) {
 
   /*
@@ -35,10 +37,13 @@ define( [
   } );
 
   var spriteManager = spriteManagerSetup();
+  
+  var interactionManager = interactionManagerSetup();
 
   var gameBuilder = new GameBuilder( {
     screenManager : screenManager,
-    spriteManager : spriteManager
+    spriteManager : spriteManager, 
+    interactionManager : interactionManager
   } );
 
   var application = new GameBuilderApplication( {

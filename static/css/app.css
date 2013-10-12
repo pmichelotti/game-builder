@@ -525,3 +525,149 @@ body {
   width: 75%;
   margin-bottom: 15px;
 }
+/* SCREEN FLOW MANAGER */
+/* INTERACTION MANAGER */
+.interaction-manager-container .current-interaction-container {
+  margin-top: 25px;
+}
+.interaction-manager-container .current-interaction-container .current-interaction-inner-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #ead1aa;
+  border: 1px solid #e8cca2;
+  color: #f9f2e7;
+  cursor: pointer;
+}
+.interaction-manager-container .current-interaction-container .current-interaction-inner-container:hover {
+  background-color: #efdcbe;
+}
+.interaction-manager-container .current-interaction-container .current-interaction-inner-container:active {
+  background-color: #e5c695;
+  box-shadow: 0px 0px 2px 4px #e0bb81 inset;
+}
+.interaction-manager-container .current-interaction-container .current-interaction-inner-container .current-interaction-toolbar .mapping-identifier {
+  margin-left: 5px;
+}
+.interaction-manager-container .current-interaction-container .current-interaction-inner-container .current-interaction-toolbar ul {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.interaction-manager-container .current-interaction-container .current-interaction-inner-container .current-interaction-toolbar ul li {
+  float: left;
+  margin: 0px 5px 5px 0px;
+}
+.interaction-manager-container .interaction-list-container {
+  margin-top: 25px;
+}
+.interaction-manager-container .interaction-list-container ul {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.interaction-manager-container .interaction-list-container ul li {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #00a8c6;
+  border: 1px solid #009fbc;
+  color: #f9f2e7;
+  cursor: pointer;
+}
+.interaction-manager-container .interaction-list-container ul li:hover {
+  background-color: #00bee0;
+}
+.interaction-manager-container .interaction-list-container ul li:active {
+  background-color: #0092ad;
+  box-shadow: 0px 0px 2px 4px #007d93 inset;
+}
+.interaction-manager-container .interaction-list-container ul li ul.interaction-mappings {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.interaction-manager-container .interaction-list-container ul li ul.interaction-mappings li {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #00bee0;
+  border: 1px solid #00b5d5;
+  color: #f9f2e7;
+  cursor: pointer;
+  width: auto;
+  margin: 0px 15px 15px 0px;
+  float: left;
+}
+.interaction-manager-container .interaction-list-container ul li ul.interaction-mappings li:hover {
+  background-color: #00d3f9;
+}
+.interaction-manager-container .interaction-list-container ul li ul.interaction-mappings li:active {
+  background-color: #00a8c6;
+  box-shadow: 0px 0px 2px 4px #0092ad inset;
+}
+.interaction-manager-container .interaction-list-container ul li ul.interaction-mappings li .mapping-identifier {
+  margin-left: 5px;
+}
+.interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #40c0cb;
+  border: 1px solid #38bdc9;
+  color: #f9f2e7;
+  cursor: pointer;
+}
+.interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container:hover {
+  background-color: #54c7d0;
+}
+.interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container:active {
+  background-color: #34b3be;
+  box-shadow: 0px 0px 2px 4px #2ea0aa inset;
+}
+.interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container form label {
+  font-size: 2.5em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container form label select {
+  font-size: 2.5em;
+  margin-left: 25px;
+}
+.interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container form button[type="submit"] {
+  font-size: 2.5em;
+}

@@ -12,6 +12,9 @@ define( [], function() {
 
     this.screens = options.screens || Array();
     this.sprites = options.sprites || Array();
+    this.interactions = options.interactions || Array();
+    
+    this.properties = options.properties || Array();
 
     this.toJSON = function() {
 
@@ -30,6 +33,18 @@ define( [], function() {
 
       self.sprites.forEach( function( curSprite ) {
         retObject[ 'sprites' ].push( curSprite.toJSON() );
+      } );
+      
+      retObject[ 'interactions' ] = Array();
+      
+      self.interactions.forEach( function( curInteraction ) {
+        retObject[ 'interactions' ].push( curInteraction.toJSON() );
+      } );
+      
+      retObject[ 'properties' ] = Array();
+      
+      self.properties.forEach( function( curProperty ) {
+        retObject[ 'properties' ].push( curProperty.toJSON() );
       } );
 
       return retObject;

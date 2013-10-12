@@ -1,0 +1,94 @@
+.interaction-manager-container {
+
+  .current-interaction-container {
+  
+    margin-top : 25px;
+    
+    .current-interaction-inner-container {
+    
+      .centered();
+      
+      .large-button( darken( @whitetrash, 15% ), @whitetrash );
+    
+      .current-interaction-toolbar {
+        
+        .mapping-identifier {
+          margin-left : 5px;
+        }
+        
+        ul {
+        
+          .unstyled-list;
+          
+          li {
+          
+            float : left;
+            margin : 0px 5px 5px 0px;
+            
+          }
+        
+        }
+      }
+      
+    }
+  
+  }
+  
+  .interaction-list-container {
+  
+    margin-top : 25px;
+    
+    ul {
+      
+      .unstyled-list;
+     
+      li {
+      
+        .centered();
+        
+        margin-bottom : 15px;
+        
+        .large-button( @tropiteal, @whitetrash );
+        
+        ul.interaction-mappings {
+        
+          .unstyled-list;
+          
+          li { 
+          
+            .large-button( lighten( @tropiteal, 5% ), @whitetrash );
+          
+            .mapping-identifier {
+              margin-left : 5px;
+            }
+            
+            width : auto;
+            margin : 0px 15px 15px 0px;
+            float : left;
+            
+          }
+        
+        }
+      
+      } 
+    }
+    
+  }
+  
+  .new-interaction-form-container {
+  
+    .new-interaction-form-inner-container {
+      
+      .centered();
+      
+      .large-button( @teal-drop, @whitetrash );
+      
+      form {
+        .thick-form();
+      }
+      
+    }
+    
+  }
+
+}

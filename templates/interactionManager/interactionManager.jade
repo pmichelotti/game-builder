@@ -1,0 +1,34 @@
+div.interaction-manager-container( data-bind = 'with : interactionManager' )
+  div.current-interaction-container.container( data-bind = 'visible : currentEditableInteraction' )
+    div.current-interaction-inner-container( data-bind = 'with : currentEditableInteraction' )
+      h4.current-interaction-name( data-bind = 'text : name' )
+      div.current-interaction-toolbar.clearfix
+        ul.current-interaction-mappings( data-bind = 'foreach : mappings' )
+          li
+            span.mapping-type( data-bind = 'text : type' )
+            span.mapping-identifier( data-bind = 'text : prettyIdentifier' )
+        ul.current-interaction-buttons.pull-right
+          li
+            button.btn.btn-large.btn-primary.add-mapping-button( data-bind = 'click : $parent.addMapping' ) 
+              i.icon.icon-large.icon-plus-sign
+          li
+            button.btn.btn-large.btn-warning.remove-mapping-button( data-bind = 'click : $parent.deleteCurrentInteraction' )
+              i.icon.icon-large.icon-trash
+          li
+            button.btn.btn-large.btn-success( data-bind = 'click : $parent.saveInteraction' )
+              i.icon.icon-large.icon-save
+  div.interaction-list-container.container( data-bind = 'with : game' )
+    ul.interaction-list( data-bind = 'foreach : interactions' )
+      li.clearfix( data-bind = 'click : $parents[1].editInteraction' )
+        div.interaction-container
+          h5( data-bind = 'text : name' )
+          ul.interaction-mappings( data-bind = 'foreach : mappings' )
+            li
+              span.mapping-type( data-bind = 'text : type' )
+              span.mapping-identifier( data-bind = 'text : prettyIdentifier' )
+  div.new-interaction-form-container.container( data-bind = 'with : newInteractionForm' )
+    div.new-interaction-form-inner-container
+      form.new-interaction-form( data-bind = 'submit : submit' )
+        label Name 
+          input( type = 'text', name = 'name', data-bind = 'value : name' )
+        button.btn.btn-large.btn-primary( type = 'submit' ) Add Interaction
