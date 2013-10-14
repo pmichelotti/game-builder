@@ -2,12 +2,14 @@ define( [
           'game/Game',
           'persistence/spriteDeserializationFunctions',
           'screen/singleFrameScreen/SingleFrameScreen', 
-          'persistence/interactionDeserializationFunctions' ],
+          'persistence/interactionDeserializationFunctions',
+          'persistence/screenFlowDeserializationFunctions' ],
           function(
               Game,
               spriteFunctions,
               SingleFrameScreen, 
-              interactionFunctions) {
+              interactionFunctions, 
+              screenFlowFunctions) {
 
   var makeScreen = function( json ) {
       //TODO : Need something to deserialize each screen type
@@ -29,6 +31,10 @@ define( [
       json.screens.forEach( function( curScreenJson ) {
         gameOptions[ 'screens' ].push( makeScreen( curScreenJson ) );
       } );
+    }
+    
+    if ( json.screenFlow ) {
+      gameOptions[ 'screenFlow' ] = screenFlowFunctions.makeScreenFlow( json.screenFlow, gameOptions[ 'screens' ] );
     }
 
     gameOptions[ 'sprites' ] = Array();

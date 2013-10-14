@@ -17,12 +17,14 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
     this.loading = ko.observable( false );
 
     this.screenManager = options.screenManager;
+    this.screenFlowManager = options.screenFlowManager;
     this.spriteManager = options.spriteManager;
     this.interactionManager = options.interactionManager;
 
     this.setGame = function( game ) {
       self.game( new EditableGame( game ) );
       self.screenManager.manage( self.game() );
+      self.screenFlowManager.manage( self.game() );
       self.spriteManager.manage( self.game() );
       self.interactionManager.manage( self.game() );
     };
@@ -30,6 +32,7 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
     this.clear = function() {
       self.game( null );
       self.screenManager.clear();
+      self.screenFlowManager.clear();
       self.spriteManager.clear();
       self.interactionManager.clear();
     };

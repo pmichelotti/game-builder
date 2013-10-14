@@ -1,4 +1,4 @@
-define( [], function() {
+define( [ 'screenFlow/ScreenFlow' ], function( ScreenFlow ) {
 
   var Game = function( id, options ) {
 
@@ -11,6 +11,7 @@ define( [], function() {
     this.name = options.name || id;
 
     this.screens = options.screens || Array();
+    this.screenFlow = options.screenFlow || new ScreenFlow();
     this.sprites = options.sprites || Array();
     this.interactions = options.interactions || Array();
     
@@ -28,6 +29,8 @@ define( [], function() {
       self.screens.forEach( function( curScreen ) {
         retObject[ 'screens' ].push( curScreen.toJSON() );
       } );
+      
+      retObject[ 'screenFlow' ] = self.screenFlow.toJSON();
 
       retObject[ 'sprites' ] = Array();
 

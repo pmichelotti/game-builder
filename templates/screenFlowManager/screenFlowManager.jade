@@ -1,1 +1,43 @@
-h4 Screen Flow Manager
+div.screen-flow-manager-container.container( data-bind = 'with : screenFlowManager' )
+  h3 Screen Flow
+  div.current-screen-flow-node-container( data-bind = 'visible : currentEditableScreenFlowNode' )
+    div.current-screen-flow-node-inner-container( data-bind = 'with : currentEditableScreenFlowNode' )
+      h4( data-bind = 'text : id' )
+      ul.current-screen-flow-node-branch-list( data-bind = 'foreach : branches' )
+        li( data-bind = 'click : $parents[1].editScreenFlowBranch' )
+          em.branch-name( data-bind = 'text : id' )
+          div( data-bind = 'with : node' )
+            span.branch-node( data-bind = 'text : id' )
+      div.new-branch-form-container( data-bind = 'with : $parent.newScreenFlowBranchForm' )
+        form( data-bind = 'submit : submit' )
+          label ID
+            input( type = 'text', name = 'id', data-bind = 'value : id' )
+          button.btn.btn-large.btn-primary( type = 'submit' ) New Branch
+      div.save-button-container
+        button.btn.btn-large.btn-success( data-bind = 'click : $parent.saveCurrentNode' )
+          i.icon.icon-large.icon-save
+  div.current-screen-flow-branch-container( data-bind = 'visible : currentEditableScreenFlowBranch' )
+    div.current-screen-flow-branch-inner-container( data-bind = 'with : currentEditableScreenFlowBranch' )
+      h4( data-bind = 'text : id' )
+      div.save-button-container
+        button.btn.btn-large.btn-success( data-bind = 'click : $parent.saveCurrentBranch' )
+          i.icon.icon-large.icon-save
+  div.screen-flow-container( data-bind = 'with : game' )
+    div.screen-flow-list-container( data-bind = 'with : screenFlow' )
+      ul.screen-flow-node-list( data-bind = 'foreach : screenFlowNodes' )
+        li( data-bind = 'click : $parents[2].editScreenFlowNode' )
+          h4( data-bind = 'text : id' )
+          span.screen-name( data-bind = 'text : screen.name' )
+          ul.screen-flow-node-branch-list( data-bind = 'foreach : branches' )
+            li
+              em.branch-name( data-bind = 'text : id' )
+              div( data-bind = 'with : node' )
+                span.branch-node( data-bind = 'text : id' )
+  div.new-screen-flow-node-form-container( data-bind = 'with : newScreenFlowNodeForm' )
+    form( data-bind = 'submit : submit' )
+      label ID
+        input( type = 'text', name = 'id', data-bind = 'value : id' )
+      label Screen
+        select( name = 'screen', data-bind = 'options : screens, optionsText : "name", optionsCaption : "Screen", value : screen' )
+      button.btn.btn-large.btn-primary( type = 'submit' ) New Node
+  

@@ -6,6 +6,7 @@ define( [
          'screen/manager/ScreenType',
          'screen/singleFrameScreen/SingleFrameScreen',
          'screen/singleFrameScreen/SingleFrameScreenBuilder',
+         'setup/screenFlowManagerSetup',
          'setup/spriteManagerSetup', 
          'setup/interactionManagerSetup'
         ],
@@ -17,6 +18,7 @@ define( [
             ScreenType,
             SingleFrameScreen,
             SingleFrameScreenBuilder,
+            screenFlowManagerSetup,
             spriteManagerSetup, 
             interactionManagerSetup
           ) {
@@ -36,6 +38,8 @@ define( [
     types : screenTypes
   } );
 
+  var screenFlowManager = screenFlowManagerSetup();
+  
   var spriteManager = spriteManagerSetup();
   
   var interactionManager = interactionManagerSetup();
@@ -43,7 +47,8 @@ define( [
   var gameBuilder = new GameBuilder( {
     screenManager : screenManager,
     spriteManager : spriteManager, 
-    interactionManager : interactionManager
+    interactionManager : interactionManager,
+    screenFlowManager : screenFlowManager
   } );
 
   var application = new GameBuilderApplication( {

@@ -14,7 +14,7 @@ define( [ 'shapes/Size' ], function( Size ) {
     this.size = new Size( options.width || 0, options.height || 0 );
 
     this.sprite = options.sprite;
-    this.durration = options.durration;
+    this.duration = options.duration;
     this.bypassInteraction = options.bypassInteraction || Array();
 
     this.toJSON = function() {
