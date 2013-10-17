@@ -1,7 +1,7 @@
 define( [ 'screenFlow/ScreenFlowNode', 'screenFlow/ScreenFlowBranch', 'transition/Transition' ], 
   function( ScreenFlowNode, ScreenFlowBranch, Transition ) {
   
-  var EditableScreenFlowNode = function( screenFlowNode ) {
+  var EditableScreenFlowNode = function( screenFlowNode, screenOptions ) {
     
     var self = this;
     
@@ -10,6 +10,8 @@ define( [ 'screenFlow/ScreenFlowNode', 'screenFlow/ScreenFlowBranch', 'transitio
     this.id = screenFlowNode.id;
     this.screen = ko.observable( screenFlowNode.screen );
     this.branches = ko.observableArray( screenFlowNode.branches || Array() ).extend( { replacable : true } );
+    
+    this.screenOptions = screenOptions;
     
     this.addBranch = function( id ) {
       self.branches.push( new ScreenFlowBranch( id ) );

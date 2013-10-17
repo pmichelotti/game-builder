@@ -1,4 +1,104 @@
 .screen-flow-manager-container {
 
+  .current-screen-flow-node-container {
+  
+    .large-button( lighten( @whitetrash, 3% ), darken( @whitetrash, 20% ) );
+    .centered;
+    
+    margin-bottom : 25px;
+    
+    ul.current-screen-flow-node-branch-list {
+    
+      .unstyled-list;
+      
+      > li {
+      
+      	.large-button( darken( @whitetrash, 25% ), @whitetrash );
+        float : left;
+        font-size : 1.25em;
+        margin : 0px 15px 15px 0px;
+        width : auto;
+        
+      }
+      
+    }
+    
+    .new-branch-form-container {
+    
+      form {
+      
+        .thick-form( 1.25em );
+      
+      }
+    }
+    
+  }
+  
+  .current-screen-flow-branch-container {
+  
+    .large-button( lighten( @whitetrash, 3% ), darken( @whitetrash, 20% ) );
+    .centered;
+    
+    margin-bottom : 25px;
+    
+    .edit-branch-form-container { 
+    
+      form {
+      
+        .thick-form( 1.25em );
+      
+      }
+    
+    }
+    
+  }
+  
+  .screen-flow-container {
+  
+    ul.screen-flow-node-list {
+    
+      .unstyled-list;
+      
+      > li {
+      
+        .large-button( @tropiteal, @whitetrash );
+        .centered;
+        margin-bottom : 25px;
+        
+        ul.screen-flow-node-branch-list {
+        
+          .unstyled-list;
+          margin-top : 15px;
+          
+          > li {
+          
+            .large-button( lighten( @tropiteal, 15% ), @whitetrash );
+            float : left;
+            font-size : 1.5em;
+            margin : 0px 15px 15px 0px;
+            width : auto;
+          
+          }
+        
+        }
+      
+      }
+    
+    }
+  
+  }
+  
+  .new-screen-flow-node-form-container {
+  
+    .large-button( @teal-drop, @whitetrash );
+    .centered;
+    
+    form {
+    
+      .thick-form;
+      
+    }
+  
+  }
 
 }

@@ -526,6 +526,248 @@ body {
   margin-bottom: 15px;
 }
 /* SCREEN FLOW MANAGER */
+.screen-flow-manager-container .current-screen-flow-node-container {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #fcf9f3;
+  border: 1px solid #faf4eb;
+  color: #e5c695;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+}
+.screen-flow-manager-container .current-screen-flow-node-container:hover {
+  background-color: #ffffff;
+}
+.screen-flow-manager-container .current-screen-flow-node-container:active {
+  background-color: #f7eedf;
+  box-shadow: 0px 0px 2px 4px #f2e3ca inset;
+}
+.screen-flow-manager-container .current-screen-flow-node-container ul.current-screen-flow-node-branch-list {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.screen-flow-manager-container .current-screen-flow-node-container ul.current-screen-flow-node-branch-list > li {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #e0bb81;
+  border: 1px solid #ddb679;
+  color: #f9f2e7;
+  cursor: pointer;
+  float: left;
+  font-size: 1.25em;
+  margin: 0px 15px 15px 0px;
+  width: auto;
+}
+.screen-flow-manager-container .current-screen-flow-node-container ul.current-screen-flow-node-branch-list > li:hover {
+  background-color: #e5c695;
+}
+.screen-flow-manager-container .current-screen-flow-node-container ul.current-screen-flow-node-branch-list > li:active {
+  background-color: #dab06d;
+  box-shadow: 0px 0px 2px 4px #d5a558 inset;
+}
+.screen-flow-manager-container .current-screen-flow-node-container .new-branch-form-container form label {
+  font-size: 1.25em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.screen-flow-manager-container .current-screen-flow-node-container .new-branch-form-container form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.screen-flow-manager-container .current-screen-flow-node-container .new-branch-form-container form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.screen-flow-manager-container .current-screen-flow-node-container .new-branch-form-container form label select {
+  font-size: 1.25em;
+  margin-left: 25px;
+}
+.screen-flow-manager-container .current-screen-flow-node-container .new-branch-form-container form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.screen-flow-manager-container .current-screen-flow-node-container .new-branch-form-container form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.screen-flow-manager-container .current-screen-flow-node-container .new-branch-form-container form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.screen-flow-manager-container .current-screen-flow-node-container .new-branch-form-container form button[type="submit"] {
+  font-size: 1.25em;
+}
+.screen-flow-manager-container .current-screen-flow-branch-container {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #fcf9f3;
+  border: 1px solid #faf4eb;
+  color: #e5c695;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+}
+.screen-flow-manager-container .current-screen-flow-branch-container:hover {
+  background-color: #ffffff;
+}
+.screen-flow-manager-container .current-screen-flow-branch-container:active {
+  background-color: #f7eedf;
+  box-shadow: 0px 0px 2px 4px #f2e3ca inset;
+}
+.screen-flow-manager-container .current-screen-flow-branch-container .edit-branch-form-container form label {
+  font-size: 1.25em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.screen-flow-manager-container .current-screen-flow-branch-container .edit-branch-form-container form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.screen-flow-manager-container .current-screen-flow-branch-container .edit-branch-form-container form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.screen-flow-manager-container .current-screen-flow-branch-container .edit-branch-form-container form label select {
+  font-size: 1.25em;
+  margin-left: 25px;
+}
+.screen-flow-manager-container .current-screen-flow-branch-container .edit-branch-form-container form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.screen-flow-manager-container .current-screen-flow-branch-container .edit-branch-form-container form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.screen-flow-manager-container .current-screen-flow-branch-container .edit-branch-form-container form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.screen-flow-manager-container .current-screen-flow-branch-container .edit-branch-form-container form button[type="submit"] {
+  font-size: 1.25em;
+}
+.screen-flow-manager-container .screen-flow-container ul.screen-flow-node-list {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.screen-flow-manager-container .screen-flow-container ul.screen-flow-node-list > li {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #00a8c6;
+  border: 1px solid #009fbc;
+  color: #f9f2e7;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+}
+.screen-flow-manager-container .screen-flow-container ul.screen-flow-node-list > li:hover {
+  background-color: #00bee0;
+}
+.screen-flow-manager-container .screen-flow-container ul.screen-flow-node-list > li:active {
+  background-color: #0092ad;
+  box-shadow: 0px 0px 2px 4px #007d93 inset;
+}
+.screen-flow-manager-container .screen-flow-container ul.screen-flow-node-list > li ul.screen-flow-node-branch-list {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+  margin-top: 15px;
+}
+.screen-flow-manager-container .screen-flow-container ul.screen-flow-node-list > li ul.screen-flow-node-branch-list > li {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #14dbff;
+  border: 1px solid #09daff;
+  color: #f9f2e7;
+  cursor: pointer;
+  float: left;
+  font-size: 1.5em;
+  margin: 0px 15px 15px 0px;
+  width: auto;
+}
+.screen-flow-manager-container .screen-flow-container ul.screen-flow-node-list > li ul.screen-flow-node-branch-list > li:hover {
+  background-color: #2ddfff;
+}
+.screen-flow-manager-container .screen-flow-container ul.screen-flow-node-list > li ul.screen-flow-node-branch-list > li:active {
+  background-color: #00d3f9;
+  box-shadow: 0px 0px 2px 4px #00bee0 inset;
+}
+.screen-flow-manager-container .new-screen-flow-node-form-container {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #40c0cb;
+  border: 1px solid #38bdc9;
+  color: #f9f2e7;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
+.screen-flow-manager-container .new-screen-flow-node-form-container:hover {
+  background-color: #54c7d0;
+}
+.screen-flow-manager-container .new-screen-flow-node-form-container:active {
+  background-color: #34b3be;
+  box-shadow: 0px 0px 2px 4px #2ea0aa inset;
+}
+.screen-flow-manager-container .new-screen-flow-node-form-container form label {
+  font-size: 2.5em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.screen-flow-manager-container .new-screen-flow-node-form-container form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.screen-flow-manager-container .new-screen-flow-node-form-container form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.screen-flow-manager-container .new-screen-flow-node-form-container form label select {
+  font-size: 2.5em;
+  margin-left: 25px;
+}
+.screen-flow-manager-container .new-screen-flow-node-form-container form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.screen-flow-manager-container .new-screen-flow-node-form-container form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.screen-flow-manager-container .new-screen-flow-node-form-container form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.screen-flow-manager-container .new-screen-flow-node-form-container form button[type="submit"] {
+  font-size: 2.5em;
+}
 /* INTERACTION MANAGER */
 .interaction-manager-container .current-interaction-container {
   margin-top: 25px;

@@ -1,11 +1,14 @@
-define( [ 'transition/Transition', 'screenFlow/ScreenFlowNode', 'screenFlow/ScreenFlowBranch', 'screenFlow/ScreenFlow' ], function( Transition, ScreenFlowNode, ScreenFlowBranch, ScreenFlow ) {
+define( [ 'transition/Transition', 'transition/TransitionList', 'screenFlow/ScreenFlowNode', 'screenFlow/ScreenFlowBranch', 'screenFlow/ScreenFlow' ], function( Transition, TransitionList, ScreenFlowNode, ScreenFlowBranch, ScreenFlow ) {
   
   var makeTransitionForJson = function( json ) {
     
+    var outTransition = TransitionList.getTransitionById( json.outType );
+    var inTransition = TransitionList.getTransitionById( json.inType );
+    
     return new Transition( {
-      outType : json.outType, 
+      outType : outTransition, 
       outDuration : json.outDuration, 
-      inType : json.inType,
+      inType : inTransition,
       inDuration : json.inDuration
     } );
     
@@ -50,7 +53,7 @@ define( [ 'transition/Transition', 'screenFlow/ScreenFlowNode', 'screenFlow/Scre
           curScreenFlowNodeJson.branches.forEach( function( curScreenFlowBranch ) {
             
             var transition = makeTransitionForJson( curScreenFlowBranch.transition );
-            var node = screenFlowNodesMap[ curScreenFlowBranch.id ];
+            var node = screenFlowNodesMap[ curScreenFlowBranch.node ];
             
             curNodeBranches.push( new ScreenFlowBranch( curScreenFlowBranch.id, {
               transition : transition, 

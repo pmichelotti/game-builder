@@ -13,9 +13,9 @@ define( [], function() {
     
     this.toJSON = function() {
       return {
-        outType : self.outType,
+        outType : self.outType ? self.outType.id : null,
         outDuration : self.outDuration, 
-        inType : self.inType, 
+        inType : self.inType ? self.inType.id : null, 
         inDuration : self.inDuration
       };
     };

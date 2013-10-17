@@ -33,12 +33,12 @@ define( [ 'screenFlow/EditableScreenFlow', 'screenFlow/EditableScreenFlowNode', 
     };
     
     this.editScreenFlowNode = function( node ) {
-      self.currentEditableScreenFlowNode( new EditableScreenFlowNode( node ) );  
+      self.currentEditableScreenFlowNode( new EditableScreenFlowNode( node, self.game().screens ) );  
       self.currentEditableScreenFlowBranch( null );
     };
     
     this.editScreenFlowBranch = function( branch ) {
-      self.currentEditableScreenFlowBranch( new EditableScreenFlowBranch( branch ) );
+      self.currentEditableScreenFlowBranch( new EditableScreenFlowBranch( branch, self.game().screenFlow.screenFlowNodes ) );
     };
     
     this.removeBranchFromCurrentNode = function( branch ) {

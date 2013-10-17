@@ -1,4 +1,4 @@
-define( [], function() {
+define( [ 'transition/Transition' ], function( Transition ) {
   
   var ScreenFlowBranch = function( id, options ) {
   
@@ -7,7 +7,7 @@ define( [], function() {
     var self = this;
     
     this.id = id;
-    this.transition = options.transition;
+    this.transition = options.transition || new Transition();
     this.node = options.node;
     
     this.toJSON = function() {
@@ -15,7 +15,7 @@ define( [], function() {
       return {
         id : self.id,
         transition : self.transition ? self.transition.toJSON() : null,
-        node : self.node ? self.node.toJSON() : null
+        node : self.node ? self.node.id : null
       };
       
     };

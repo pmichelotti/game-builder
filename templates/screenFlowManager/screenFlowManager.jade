@@ -1,31 +1,50 @@
 div.screen-flow-manager-container.container( data-bind = 'with : screenFlowManager' )
   h3 Screen Flow
   div.current-screen-flow-node-container( data-bind = 'visible : currentEditableScreenFlowNode' )
-    div.current-screen-flow-node-inner-container( data-bind = 'with : currentEditableScreenFlowNode' )
+    div.current-screen-flow-node-inner-container.clearfix( data-bind = 'with : currentEditableScreenFlowNode' )
       h4( data-bind = 'text : id' )
-      ul.current-screen-flow-node-branch-list( data-bind = 'foreach : branches' )
+      h5( data-bind = 'with : screen' ) Screen 
+        em( data-bind = 'text : name' )
+      ul.current-screen-flow-node-branch-list.clearfix( data-bind = 'foreach : branches' )
         li( data-bind = 'click : $parents[1].editScreenFlowBranch' )
           em.branch-name( data-bind = 'text : id' )
           div( data-bind = 'with : node' )
             span.branch-node( data-bind = 'text : id' )
+      div.screen-update-form-container
+        form
+          label Screen
+            select( name = 'screen', data-bind = 'options : screenOptions, optionsText : "name", optionsCaption : "Screen", value : screen' )
       div.new-branch-form-container( data-bind = 'with : $parent.newScreenFlowBranchForm' )
         form( data-bind = 'submit : submit' )
           label ID
             input( type = 'text', name = 'id', data-bind = 'value : id' )
           button.btn.btn-large.btn-primary( type = 'submit' ) New Branch
-      div.save-button-container
+      div.save-button-container.pull-right
         button.btn.btn-large.btn-success( data-bind = 'click : $parent.saveCurrentNode' )
           i.icon.icon-large.icon-save
   div.current-screen-flow-branch-container( data-bind = 'visible : currentEditableScreenFlowBranch' )
-    div.current-screen-flow-branch-inner-container( data-bind = 'with : currentEditableScreenFlowBranch' )
+    div.current-screen-flow-branch-inner-container.clearfix( data-bind = 'with : currentEditableScreenFlowBranch' )
       h4( data-bind = 'text : id' )
-      div.save-button-container
+      div.edit-branch-form-container
+        form
+          fieldset.transition-field-set( data-bind = 'with : transition' )
+            label Transition Out Type
+              select( name = 'outType', data-bind = 'options : typeOptions, optionsText : "name", optionsCaption : "Transition Type", value : outType' )
+            label Transition Out Duration (ms)
+              input( type = 'number', name = 'outDuration', step = '1', data-bind = 'value : outDuration' )
+            label Transition In Type
+              select( name = 'inType', data-bind = 'options : typeOptions, optionsText : "name", optionsCaption : "Transition Type", value : inType' )
+            label Transition In Duration (ms)
+              input( type = 'number', name = 'inDuration', step = '1', data-bind = 'value : inDuration' )
+          label Screen Flow Node
+            select( name = 'node', data-bind = 'options : screenFlowNodeOptions, optionsText : "id", optionsCaption : "Screen Flow Node", value : node' )
+      div.save-button-container.pull-right
         button.btn.btn-large.btn-success( data-bind = 'click : $parent.saveCurrentBranch' )
           i.icon.icon-large.icon-save
   div.screen-flow-container( data-bind = 'with : game' )
     div.screen-flow-list-container( data-bind = 'with : screenFlow' )
       ul.screen-flow-node-list( data-bind = 'foreach : screenFlowNodes' )
-        li( data-bind = 'click : $parents[2].editScreenFlowNode' )
+        li.clearfix( data-bind = 'click : $parents[2].editScreenFlowNode' )
           h4( data-bind = 'text : id' )
           span.screen-name( data-bind = 'text : screen.name' )
           ul.screen-flow-node-branch-list( data-bind = 'foreach : branches' )
