@@ -29,6 +29,12 @@ define( [], function() {
 			var renderPixel = function( x, y ) {
 				var curPixel = spriteFrame.pixels[ x ][ y ];
 
+				var handleEventFunction = function( event ) {
+				  if ( this.handleEvent ) {
+				    this.handleEvent( event, { pixel : curPixel } );
+				  }  
+				}.bind( context );
+				
 				var renderedPixel = $( '<div>' ).css( {
 					width : spritePixelSize * ( scale + 1 ),
 					height : spritePixelSize * ( scale + 1 ),
@@ -39,11 +45,10 @@ define( [], function() {
 					opacity : curPixel.opacity
 				} ).
 				addClass( 'rendered-sprite-pixel' ).
-				click( function( event ) {
-					if ( this.handleEvent ) {
-						this.handleEvent( event, { pixel : curPixel } );
-					}
-				}.bind( context ) );
+				click( handleEventFunction ). 
+				mousedown( handleEventFunction ).
+				mouseup( handleEventFunction ).
+				mouseenter( handleEventFunction );
 
 				return renderedPixel;
 			};
