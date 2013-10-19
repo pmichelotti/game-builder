@@ -8,7 +8,8 @@ define( [
          'screen/singleFrameScreen/SingleFrameScreenBuilder',
          'setup/screenFlowManagerSetup',
          'setup/spriteManagerSetup', 
-         'setup/interactionManagerSetup'
+         'setup/interactionManagerSetup',
+         'setup/clockManagerSetup'
         ],
           function(
             GameBuilderApplication,
@@ -20,7 +21,8 @@ define( [
             SingleFrameScreenBuilder,
             screenFlowManagerSetup,
             spriteManagerSetup, 
-            interactionManagerSetup
+            interactionManagerSetup,
+            clockManagerSetup
           ) {
 
   /*
@@ -43,12 +45,15 @@ define( [
   var spriteManager = spriteManagerSetup();
   
   var interactionManager = interactionManagerSetup();
+  
+  var clockManager = clockManagerSetup();
 
   var gameBuilder = new GameBuilder( {
     screenManager : screenManager,
     spriteManager : spriteManager, 
     interactionManager : interactionManager,
-    screenFlowManager : screenFlowManager
+    screenFlowManager : screenFlowManager,
+    clockManager : clockManager
   } );
 
   var application = new GameBuilderApplication( {

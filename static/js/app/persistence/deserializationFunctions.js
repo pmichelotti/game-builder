@@ -3,13 +3,15 @@ define( [
           'persistence/spriteDeserializationFunctions',
           'screen/singleFrameScreen/SingleFrameScreen', 
           'persistence/interactionDeserializationFunctions',
-          'persistence/screenFlowDeserializationFunctions' ],
+          'persistence/screenFlowDeserializationFunctions',
+          'persistence/gameClockDeserializationFunctions' ],
           function(
               Game,
               spriteFunctions,
               SingleFrameScreen, 
               interactionFunctions, 
-              screenFlowFunctions) {
+              screenFlowFunctions, 
+              gameClockFunctions ) {
 
   var makeScreen = function( json ) {
       //TODO : Need something to deserialize each screen type
@@ -52,6 +54,16 @@ define( [
         gameOptions[ 'interactions' ].push( interactionFunctions.makeInteraction( curInteractionJson ) );
       } );
     }
+    
+    gameOptions[ 'gameClocks' ] = Array();
+    
+    if ( json.gameClocks ) {
+      json.gameClocks.forEach( function( curGameClockJson ) {
+        gameOptions[ 'gameClocks' ].push( gameClockFunctions.makeGameClock( curGameClockJson ) );
+      } );
+    }
+    
+    gameOptions[ 'ticksPerSecond' ] = json.ticksPerSecond;
     
     return new Game( json.id, gameOptions );
 

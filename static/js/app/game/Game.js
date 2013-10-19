@@ -14,6 +14,8 @@ define( [ 'screenFlow/ScreenFlow' ], function( ScreenFlow ) {
     this.screenFlow = options.screenFlow || new ScreenFlow();
     this.sprites = options.sprites || Array();
     this.interactions = options.interactions || Array();
+    this.gameClocks = options.gameClocks || Array();
+    this.ticksPerSecond = options.ticksPerSecond || 15;
     
     this.properties = options.properties || Array();
 
@@ -43,6 +45,14 @@ define( [ 'screenFlow/ScreenFlow' ], function( ScreenFlow ) {
       self.interactions.forEach( function( curInteraction ) {
         retObject[ 'interactions' ].push( curInteraction.toJSON() );
       } );
+      
+      retObject[ 'gameClocks' ] = Array();
+      
+      self.gameClocks.forEach( function( curGameClock ) {
+        retObject[ 'gameClocks' ].push( curGameClock.toJSON() );
+      } );
+      
+      retObject[ 'ticksPerSecond' ] = self.ticksPerSecond;
       
       retObject[ 'properties' ] = Array();
       

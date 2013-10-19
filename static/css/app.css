@@ -913,3 +913,197 @@ body {
 .interaction-manager-container .new-interaction-form-container .new-interaction-form-inner-container form button[type="submit"] {
   font-size: 2.5em;
 }
+/* CLOCK MANAGER */
+.clock-manager-container .current-game-clock-container {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.clock-manager-container .current-game-clock-container .current-game-clock-inner-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #ead1aa;
+  border: 1px solid #e8cca2;
+  color: #f9f2e7;
+  cursor: pointer;
+}
+.clock-manager-container .current-game-clock-container .current-game-clock-inner-container:hover {
+  background-color: #efdcbe;
+}
+.clock-manager-container .current-game-clock-container .current-game-clock-inner-container:active {
+  background-color: #e5c695;
+  box-shadow: 0px 0px 2px 4px #e0bb81 inset;
+}
+.clock-manager-container .current-game-clock-container .current-game-clock-inner-container form label {
+  font-size: 1.5em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.clock-manager-container .current-game-clock-container .current-game-clock-inner-container form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.clock-manager-container .current-game-clock-container .current-game-clock-inner-container form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.clock-manager-container .current-game-clock-container .current-game-clock-inner-container form label select {
+  font-size: 1.5em;
+  margin-left: 25px;
+}
+.clock-manager-container .current-game-clock-container .current-game-clock-inner-container form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.clock-manager-container .current-game-clock-container .current-game-clock-inner-container form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.clock-manager-container .current-game-clock-container .current-game-clock-inner-container form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.clock-manager-container .current-game-clock-container .current-game-clock-inner-container form button[type="submit"] {
+  font-size: 1.5em;
+}
+.clock-manager-container .game-clock-list-container > ul {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.clock-manager-container .game-clock-list-container > ul > li {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #00a8c6;
+  border: 1px solid #009fbc;
+  color: #f9f2e7;
+  cursor: pointer;
+}
+.clock-manager-container .game-clock-list-container > ul > li:hover {
+  background-color: #00bee0;
+}
+.clock-manager-container .game-clock-list-container > ul > li:active {
+  background-color: #0092ad;
+  box-shadow: 0px 0px 2px 4px #007d93 inset;
+}
+.clock-manager-container .new-game-clock-form-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #40c0cb;
+  border: 1px solid #38bdc9;
+  color: #f9f2e7;
+  cursor: pointer;
+  margin-bottom: 25px;
+}
+.clock-manager-container .new-game-clock-form-container:hover {
+  background-color: #54c7d0;
+}
+.clock-manager-container .new-game-clock-form-container:active {
+  background-color: #34b3be;
+  box-shadow: 0px 0px 2px 4px #2ea0aa inset;
+}
+.clock-manager-container .new-game-clock-form-container > form label {
+  font-size: 2.5em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.clock-manager-container .new-game-clock-form-container > form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.clock-manager-container .new-game-clock-form-container > form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.clock-manager-container .new-game-clock-form-container > form label select {
+  font-size: 2.5em;
+  margin-left: 25px;
+}
+.clock-manager-container .new-game-clock-form-container > form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.clock-manager-container .new-game-clock-form-container > form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.clock-manager-container .new-game-clock-form-container > form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.clock-manager-container .new-game-clock-form-container > form button[type="submit"] {
+  font-size: 2.5em;
+}
+.clock-manager-container .ticks-per-second-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #40c0cb;
+  border: 1px solid #38bdc9;
+  color: #f9f2e7;
+  cursor: pointer;
+  margin-bottom: 25px;
+}
+.clock-manager-container .ticks-per-second-container:hover {
+  background-color: #54c7d0;
+}
+.clock-manager-container .ticks-per-second-container:active {
+  background-color: #34b3be;
+  box-shadow: 0px 0px 2px 4px #2ea0aa inset;
+}
+.clock-manager-container .ticks-per-second-container > form label {
+  font-size: 2.5em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.clock-manager-container .ticks-per-second-container > form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.clock-manager-container .ticks-per-second-container > form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.clock-manager-container .ticks-per-second-container > form label select {
+  font-size: 2.5em;
+  margin-left: 25px;
+}
+.clock-manager-container .ticks-per-second-container > form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.clock-manager-container .ticks-per-second-container > form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.clock-manager-container .ticks-per-second-container > form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.clock-manager-container .ticks-per-second-container > form button[type="submit"] {
+  font-size: 2.5em;
+}

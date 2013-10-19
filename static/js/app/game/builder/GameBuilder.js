@@ -1,10 +1,11 @@
 define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
 
-  var DASHBOARD_MODE = "dashboard";
-  var SCREEN_MANAGER_MODE = "screen-manager";
-  var SPRITE_MANAGER_MODE = "sprite-manager";
-  var SCREEN_FLOW_MANAGER_MODE = "screen-flow-manager";
-  var INTERACTION_MANAGER_MODE = "interaction-manager";
+  var DASHBOARD_MODE = 'dashboard';
+  var SCREEN_MANAGER_MODE = 'screen-manager';
+  var SPRITE_MANAGER_MODE = 'sprite-manager';
+  var SCREEN_FLOW_MANAGER_MODE = 'screen-flow-manager';
+  var INTERACTION_MANAGER_MODE = 'interaction-manager';
+  var CLOCK_MANAGER_MODE = 'clock-manager';
 
   var GameBuilder = function( options ) {
 
@@ -20,6 +21,7 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
     this.screenFlowManager = options.screenFlowManager;
     this.spriteManager = options.spriteManager;
     this.interactionManager = options.interactionManager;
+    this.clockManager = options.clockManager;
 
     this.setGame = function( game ) {
       self.game( new EditableGame( game ) );
@@ -27,6 +29,7 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
       self.screenFlowManager.manage( self.game() );
       self.spriteManager.manage( self.game() );
       self.interactionManager.manage( self.game() );
+      self.clockManager.manage( self.game() );
     };
 
     this.clear = function() {
@@ -35,6 +38,7 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
       self.screenFlowManager.clear();
       self.spriteManager.clear();
       self.interactionManager.clear();
+      self.clockManager.clear();
     };
 
     this.openDashboard = function() {
@@ -51,6 +55,10 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
     
     this.openInteractionManager = function() {
       self.mode( INTERACTION_MANAGER_MODE );
+    };
+    
+    this.openClockManager = function() {
+      self.mode( CLOCK_MANAGER_MODE );
     };
     
     this.openScreenFlowManager = function() {
@@ -75,6 +83,10 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
     
     this.isInteractionManagerMode = ko.computed( function() {
       return self.mode() === INTERACTION_MANAGER_MODE;
+    } );
+    
+    this.isClockManagerMode = ko.computed( function() {
+      return self.mode() === CLOCK_MANAGER_MODE;
     } );
     
     this.isScreenFlowManagerMode = ko.computed( function() {

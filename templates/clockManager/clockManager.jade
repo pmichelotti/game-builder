@@ -1,0 +1,34 @@
+div.clock-manager-container( data-bind = 'with : clockManager' ) 
+  div.current-game-clock-container( data-bind = 'visible : currentEditableGameClock' )
+    div.current-game-clock-inner-container.clearfix
+      form( data-bind = 'with : currentEditableGameClock' )
+        h4( data-bind = 'text : id' )
+        label Time
+          input( type = 'number', name = 'time', step = '1', data-bind = 'value : time' )
+        label Units
+          input( type = 'number', name = 'units', step = '1', data-bind = 'value : units' )
+      div.save-button-container.pull-right
+        button.btn.btn-large.btn-success( data-bind = 'click : saveCurrentGameClock' )
+          i.icon.icon-large.icon-save
+  div.game-clock-list-container( data-bind = 'with : game' )
+    ul.game-clock-list( data-bind = 'foreach : gameClocks' )
+      li( data-bind = 'click : $parents[1].editGameClock' )
+        h4( data-bind = 'text : id' )
+        span Time: 
+          em( data-bind = 'text : time' )
+        span Units: 
+          em( data-bind = 'text : units' )
+  div.new-game-clock-form-container.clearfix( data-bind = 'with : newClockForm' )
+    form( data-bind = 'submit : submit' )
+      label ID 
+        input( type = 'text', name = 'id', data-bind = 'value : id' )
+      label Time
+        input( type = 'number', name = 'time', step = '1', data-bind = 'value : time' )
+      label Units
+        input( type = 'number', name = 'units', step = '1', data-bind = 'value : units' )
+      button.btn.btn-large.btn-primary.pull-right( type = 'submit' ) New Game Clock
+  div.ticks-per-second-container( data-bind = 'with : game' )
+    form
+      label Ticks Per Second
+        input( type = 'number', name = 'ticksPerSecond', data-bind = 'value : ticksPerSecond' )
+  
