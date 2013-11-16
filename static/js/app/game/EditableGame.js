@@ -8,7 +8,7 @@ define( [ 'game/Game', 'screenFlow/EditableScreenFlow' ], function( Game, Editab
 
     this.name = ko.observable( game.name );
 
-    this.screens = ko.observableArray( game.screens || Array() );
+    this.screens = ko.observableArray( game.screens || Array() ).extend( { replacable : true } );
     this.screenFlow = new EditableScreenFlow( game.screenFlow );
     this.sprites = ko.observableArray( game.sprites || Array() ).extend( { replacable : true } );
     this.interactions = ko.observableArray( game.interactions || Array() ).extend( { replacable : true } );

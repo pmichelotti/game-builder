@@ -1,0 +1,23 @@
+div.screen-builder-container.single-frame-screen-builder-container
+  div.screen-builder-fields-container.container
+    form.screen-builder-form( data-bind = 'submit : $parent.saveScreen' )
+      fieldset( data-bind = 'with : fields' )
+        div.name-field-container( data-bind = 'with : name' )
+          include ../../builder/fields/stringField
+        div.size-field-container( data-bind = 'with : size' )
+          include ../../builder/fields/sizeField
+        div.sprite-field-container( data-bind = 'with : sprite' )
+          include ../../builder/fields/spriteField
+        div.frame-field-container( data-bind = 'with : frame' )
+          include ../../builder/fields/frameField
+        div.duration-field-container( data-bind = 'with : duration' )
+          include ../../builder/fields/numberField
+        div.bypass-interaction-field-container( data-bind = 'with : bypassInteraction' )
+          include ../../builder/fields/interactionField
+        div.preview-field-container( data-bind = 'with : preview' )
+          include ../../builder/fields/singleFramePreviewField
+      button.btn.btn-large.btn-primary( type = 'submit' ) Save
+      button.btn.btn-large.btn-primary( data-bind = 'click : $parent.returnToScreenListMode' ) Cancel
+
+
+        

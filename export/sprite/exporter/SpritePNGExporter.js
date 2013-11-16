@@ -40,8 +40,16 @@ function decToHex ( number ){
  * 
  *   spriteFrames
  *     pixels - A matrix of pixels.  The first level of arrays represents rows, or x, the second represents columns, or y.  
+ *     
+ * @param callback A function which will take as input a JSON object representing the exported sprite and a string representing 
+ *        the file location where the sprite was saved. 
  */
-var exporter = function( spriteJson, fileName ) {
+var exporter = function( spriteJson, fileName, callback ) {
+    
+    var retSpriteJson = {};
+    
+    retSpriteJson[ 'id' ] = spriteJson.id;
+    retSpriteJson[ 'frames' ] = {};
     
     var renderedWidth = 0;
     var renderedHeight = 0;
@@ -62,6 +70,24 @@ var exporter = function( spriteJson, fileName ) {
         renderedWidth = spriteFrameWidth;
       }
       
+      /*
+       * Construct a JSON representation of the sprite frame and store it in the sprite's frame map
+       */
+      retSpriteFrame = {};
+      retSpriteFrame[ 'id' ] = curFrameJson.id;
+      retSpriteFrame[ 'width' ] = spriteFrameWidth;
+      retSpriteFrame[ 'height' ] = spriteFrameHeight;
+      retSpriteFrame[ 'image' ] = fileName;
+      retSpriteFrame[ 'position' ] = {
+          x : 0, 
+          y : pixels.length
+      };
+      
+      retSpriteJson[ 'frames' ][ curFrameJson.id ] = retSpriteFrame;
+      
+      /*
+       * Transform the abstract sprite representation into a concrete pixel representation 
+       */
       for ( var y = 0; y < spriteFrameHeight; y++ ) {
         var curRowPixels = Array();
         
@@ -87,7 +113,6 @@ var exporter = function( spriteJson, fileName ) {
         
         pixels.push( curRowPixels );
       }
-      
       
     } );
     
@@ -120,7 +145,17 @@ var exporter = function( spriteJson, fileName ) {
     /*
      * Write the rendered PNG to file
      */
-    outputPng.pack().pipe( fs.createWriteStream( fileName ) );
+    var spriteWriteStream = fs.createWriteStream( fileName );
+    
+    spriteWriteStream.on( 'end', function() {
+      
+      if ( callback ) {
+        callback( retSpriteJson, fileName );
+      }
+      
+    } );
+    
+    outputPng.pack().pipe( spriteWriteStream );
     
 };
   

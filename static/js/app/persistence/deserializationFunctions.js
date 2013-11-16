@@ -1,24 +1,17 @@
 define( [
           'game/Game',
           'persistence/spriteDeserializationFunctions',
-          'screen/singleFrameScreen/SingleFrameScreen', 
+          'persistence/screenDeserializationFunctions', 
           'persistence/interactionDeserializationFunctions',
           'persistence/screenFlowDeserializationFunctions',
           'persistence/gameClockDeserializationFunctions' ],
           function(
               Game,
               spriteFunctions,
-              SingleFrameScreen, 
+              screenFunctions, 
               interactionFunctions, 
               screenFlowFunctions, 
               gameClockFunctions ) {
-
-  var makeScreen = function( json ) {
-      //TODO : Need something to deserialize each screen type
-      return new SingleFrameScreen( json.id, { name : json.name } );
-
-  };
-
 
 
   var makeGame = function( json ) {
@@ -26,18 +19,6 @@ define( [
     var gameOptions = {};
 
     gameOptions[ 'name' ] = json.name;
-
-    gameOptions[ 'screens' ] = Array();
-
-    if ( json.screens ) {
-      json.screens.forEach( function( curScreenJson ) {
-        gameOptions[ 'screens' ].push( makeScreen( curScreenJson ) );
-      } );
-    }
-    
-    if ( json.screenFlow ) {
-      gameOptions[ 'screenFlow' ] = screenFlowFunctions.makeScreenFlow( json.screenFlow, gameOptions[ 'screens' ] );
-    }
 
     gameOptions[ 'sprites' ] = Array();
 
@@ -53,6 +34,18 @@ define( [
       json.interactions.forEach( function( curInteractionJson ) {
         gameOptions[ 'interactions' ].push( interactionFunctions.makeInteraction( curInteractionJson ) );
       } );
+    }
+
+    gameOptions[ 'screens' ] = Array();
+    
+    if ( json.screens ) {
+      json.screens.forEach( function( curScreenJson ) {
+        gameOptions[ 'screens' ].push( screenFunctions.makeScreen( curScreenJson, gameOptions ) );
+      } );
+    }
+    
+    if ( json.screenFlow ) {
+      gameOptions[ 'screenFlow' ] = screenFlowFunctions.makeScreenFlow( json.screenFlow, gameOptions[ 'screens' ] );
     }
     
     gameOptions[ 'gameClocks' ] = Array();

@@ -11,9 +11,11 @@ define( [ 'shapes/Size' ], function( Size ) {
     this.id = id;
     this.name = options.name || id;
 
-    this.size = new Size( options.width || 0, options.height || 0 );
+    this.size = options.size || new Size( 0, 0 );
 
     this.sprite = options.sprite;
+    this.frame = options.frame;
+    
     this.duration = options.duration;
     this.bypassInteraction = options.bypassInteraction || Array();
 
@@ -25,6 +27,24 @@ define( [ 'shapes/Size' ], function( Size ) {
       retObject[ 'name' ] = self.name;
       retObject[ 'type' ] = SCREEN_TYPE;
 
+      if ( self.size ) {
+        retObject[ 'size' ] = self.size.toJSON();
+      }
+      
+      if ( self.sprite ) {
+        retObject[ 'sprite' ] = self.sprite.id;
+      }
+      
+      if ( self.frame ) {
+        retObject[ 'frame' ] = self.frame.id;
+      }
+      
+      retObject[ 'duration' ] = self.duration;
+      
+      if ( self.bypassInteraction ) {
+        retObject[ 'bypassInteraction' ] = self.bypassInteraction.id;
+      }
+      
       return retObject;
 
     };

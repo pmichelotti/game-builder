@@ -1,7 +1,16 @@
-define( [ 'screen/manager/NewScreenForm' ], function( NewScreenForm ) {
+define( [ 'screen/manager/NewScreenForm', 'screen/singleFrameScreen/SingleFrameScreenBuilder' ], function( NewScreenForm, SingleFrameScreenBuilder ) {
 
   var SCREEN_LIST_MODE = "screen-list";
   var SCREEN_EDIT_MODE = "screen-edit";
+  
+  //TODO: As more builders are created this should be moved outside the manager
+  var singleFrameScreenBuilder = new SingleFrameScreenBuilder();
+  
+  var getScreenBuilderForScreenType = function( screen ) {
+    
+    return singleFrameScreenBuilder;
+    
+  };
 
   var ScreenManager = function( options ) {
 
@@ -15,7 +24,7 @@ define( [ 'screen/manager/NewScreenForm' ], function( NewScreenForm ) {
      */
     this.registeredScreenTypes = options.types;
 
-    this.screens = ko.observableArray( options.screens || Array() );
+    //this.screens = ko.observableArray( options.screens || Array() ).extend( { "replacable" : true } );
 
     this.currentScreenBuilder = ko.observable();
 
@@ -41,9 +50,38 @@ define( [ 'screen/manager/NewScreenForm' ], function( NewScreenForm ) {
     } );
 
     this.editScreen = function( screen ) {
-      self.currentScreenBuilder( new getScreenBuilderForScreenType( screen )( screen ) );
+      var screenBuilderForScreen = getScreenBuilderForScreenType( screen );
+      screenBuilderForScreen.initialize( screen, self.game() );
+      self.currentScreenBuilder( screenBuilderForScreen );
       self.mode( SCREEN_EDIT_MODE );
     };
+    
+    this.saveScreen = function() {
+      if ( self.currentScreenBuilder() ) {
+        
+        var savedScreen = self.currentScreenBuilder().save();
+        
+        self.game().screens.replace( savedScreen );
+        
+        self.currentScreenBuilder( null );
+        
+        //TODO: Switching mode automatically may not make sense for more complex screens
+        self.mode( SCREEN_LIST_MODE );
+        
+      }
+    };
+    
+    this.returnToScreenListMode = function() {
+      self.mode( SCREEN_LIST_MODE );
+    };
+    
+    this.isScreenListMode = ko.computed( function() {
+      return self.mode() === SCREEN_LIST_MODE;
+    } );
+    
+    this.isScreenEditMode = ko.computed( function() {
+      return self.mode() === SCREEN_EDIT_MODE;
+    } );
 
   };
 

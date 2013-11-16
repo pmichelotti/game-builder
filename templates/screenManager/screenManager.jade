@@ -1,16 +1,23 @@
 div.screen-manager-container( data-bind = 'with : screenManager' )
-  div.screen-list-container.container.clearfix( data-bind = 'with : game' )
-    ul.screen-list( data-bind = 'foreach : screens' )
-      li.screen-list-item
-        div.screen-list-button
-          span.screen-name( data-bind = 'text : name' )
-          span.screen-id( data-bind = 'text : id' )
-  div.new-screen-form-container.container( data-bind = 'with : newScreenForm' )
-    form.new-screen-form( data-bind = 'submit : submit' )
-      label Name
-        input( type = 'text', name = 'name', data-bind = 'value : name' )
-      label Id
-        input( type = 'text', name = 'id', data-bind = 'value : id' )
-      label Type
-        select( name = 'screenType', data-bind = "options : screenTypes, optionsText : 'name', optionsCaption : 'Select Screen Type', value : screenType" )
-      button.btn.btn-primary( type = 'submit' ) New Screen
+  div.screen-manager-screen-list-mode-container( data-bind = 'visible : isScreenListMode' )
+    div.screen-list-container.container.clearfix( data-bind = 'with : game' )
+      ul.screen-list( data-bind = 'foreach : screens' )
+        li.screen-list-item
+          div.screen-list-button
+            span.screen-name( data-bind = 'text : name' )
+            span.screen-id( data-bind = 'text : id' )
+            div.screen-control-container.clearfix
+              button.btn.btn-primary( data-bind = 'click : $parents[1].editScreen' )
+                i.icon.icon-large.icon-edit
+    div.new-screen-form-container.container( data-bind = 'with : newScreenForm' )
+      form.new-screen-form( data-bind = 'submit : submit' )
+        label Name
+          input( type = 'text', name = 'name', data-bind = 'value : name' )
+        label Id
+          input( type = 'text', name = 'id', data-bind = 'value : id' )
+        label Type
+          select( name = 'screenType', data-bind = "options : screenTypes, optionsText : 'name', optionsCaption : 'Select Screen Type', value : screenType" )
+        button.btn.btn-primary( type = 'submit' ) New Screen
+  div.screen-manager-screen-edit-mode-container( data-bind = 'visible : isScreenEditMode' )
+    div.screen-builder-container( data-bind = 'with : currentScreenBuilder' )
+      include ../screenBuilder/singleFrameScreenBuilder/singleFrameScreenBuilder

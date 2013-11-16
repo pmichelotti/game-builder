@@ -9,7 +9,9 @@ define( [
          'setup/screenFlowManagerSetup',
          'setup/spriteManagerSetup', 
          'setup/interactionManagerSetup',
-         'setup/clockManagerSetup'
+         'setup/clockManagerSetup', 
+         
+         'kobindings/simpleSprite'
         ],
           function(
             GameBuilderApplication,

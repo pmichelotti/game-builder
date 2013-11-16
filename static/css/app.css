@@ -1107,3 +1107,62 @@ body {
 .clock-manager-container .ticks-per-second-container > form button[type="submit"] {
   font-size: 2.5em;
 }
+/* SCREEN BUILDERS*/
+.single-frame-screen-builder-container .screen-builder-fields-container {
+  width: 60%;
+  text-align: center;
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #40c0cb;
+  border: 1px solid #38bdc9;
+  color: #f9f2e7;
+  cursor: pointer;
+}
+.single-frame-screen-builder-container .screen-builder-fields-container:hover {
+  background-color: #54c7d0;
+}
+.single-frame-screen-builder-container .screen-builder-fields-container:active {
+  background-color: #34b3be;
+  box-shadow: 0px 0px 2px 4px #2ea0aa inset;
+}
+.single-frame-screen-builder-container .screen-builder-fields-container form label {
+  font-size: 2.5em;
+  display: block;
+  margin: 0 auto 15px auto;
+}
+.single-frame-screen-builder-container .screen-builder-fields-container form label input[type="text"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.single-frame-screen-builder-container .screen-builder-fields-container form label input[type="number"] {
+  width: 50%;
+  margin-left: 25px;
+}
+.single-frame-screen-builder-container .screen-builder-fields-container form label select {
+  font-size: 2.5em;
+  margin-left: 25px;
+}
+.single-frame-screen-builder-container .screen-builder-fields-container form fieldset.inline label {
+  display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.single-frame-screen-builder-container .screen-builder-fields-container form fieldset.inline input[type="text"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.single-frame-screen-builder-container .screen-builder-fields-container form fieldset.inline input[type="number"] {
+  width: 20%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.single-frame-screen-builder-container .screen-builder-fields-container form button[type="submit"] {
+  font-size: 2.5em;
+}
+/* SCREEN BUILDER FIELDS */
+.screen-builder-container .single-frame-preview-container {
+  position: relative;
+  background-color: #ffffff;
+  overflow: hidden;
+}
