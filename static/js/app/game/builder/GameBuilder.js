@@ -12,6 +12,16 @@ define( [ 'game/Game', 'game/EditableGame' ], function( Game, EditableGame ) {
     var self = this;
 
     this.game = ko.observable();
+    
+    this.exportHref = ko.computed( function() {
+      
+      if ( self.game() && self.game().game ) {
+        return '/games/' + self.game().game.id + '.zip';
+      }
+      
+      return '#';
+      
+    } );
 
     this.mode = ko.observable( DASHBOARD_MODE );
 

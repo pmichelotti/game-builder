@@ -12,7 +12,8 @@
     "express" : "*",
     "jade" : "*",
     "fs-extra" : "*",
-    "pngjs" : "*"
+    "pngjs" : "*", 
+    "archiver" : "*"
   }
 
 }

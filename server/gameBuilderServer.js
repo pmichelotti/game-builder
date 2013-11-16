@@ -4,6 +4,8 @@ var app = express();
 
 var persistenceManager = require( '../persistence/json/fileBased/jsonFilePersistence' );
 
+var zipExporter = require( '../export/archive/zipFileExporter' );
+
 var start = function( staticDirectory, viewsDirectory, gameDirectory ) {
 
   /*
@@ -54,6 +56,9 @@ var start = function( staticDirectory, viewsDirectory, gameDirectory ) {
 
   } );
 
+  /*
+   * GET JSON representation of an individual game
+   */
   app.get( /^\/games\/\w(\w|-)*\.json$/, function( req, res ) {
 
     console.log( 'Requesting game ' + gameDirectory + req.path );
@@ -74,7 +79,46 @@ var start = function( staticDirectory, viewsDirectory, gameDirectory ) {
     } );
 
   } );
+  
+  app.get( /^\/games\/\w(\w|-)*\.zip$/, function( req, res ) {
+    
+    console.log( 'Exporting game ' + gameDirectory + req.path );
+    
+    persistenceManager.get( gameDirectory + req.path.substring( 0, req.path.length - 4 ), function( success, data ) {
+      
+      if ( success ) {
+        zipExporter.exportGame( data, function( success, zipFile ) {
+          
+          if ( success ) {
+            res.set( 'Content-Type', 'application/zip' );
+            console.log( 'Sending zipped game file ' + zipFile );
+            res.sendfile( zipFile );
+          }
+          else {
+            console.log( 'Error encountered exporting Game object' );
+            res.send( 500 );
+            return;
+          }
+          
+        } );
+      }
+      else {
+        console.log( 'Error hit deserializing game ' + data );
+        if ( typeof data === 'number' ) {
+          res.send( data );
+          return;
+        }
+        res.send( 500, data );
+        return;
+      }
+      
+    } );
+    
+  } );
 
+  /*
+   * GET JSON representation of all known games
+   */
   app.get( '/games.json', function( req, res ) {
 
     console.log( 'Requesting games list' );

@@ -3,8 +3,11 @@ var exportSprite = require( '../../sprite/exporter/SpritePNGExporter' ).exporter
 var exportFunction = function( game, exportPath, callback ) {
   
   var retGameObject = {};
+  var exportedFiles = {};
   
   retGameObject[ 'id' ] = game.id;
+  
+  console.log( 'GameExporter.exportFunction : Exporting game ' + game.id );
   
   var exportTracker = new function( completedCallback ) {
     
@@ -12,30 +15,118 @@ var exportFunction = function( game, exportPath, callback ) {
     
     this.completedCallback = completedCallback;
     
+    this.screenExportCompleted = false;
+    this.screenFlowExportCompleted = false;
     this.spriteExportCompleted = false;
+    this.interactionsExportCompleted = false;
+    this.gameClocksExportCompleted = false;
+    this.ticksPerSecondExportCompleted = false;
+    
+    this.screenExportDone = function() {
+      console.log( 'GameExporter.exportFunction : Screen Export Done' );
+      exportTrackerSelf.screenExportCompleted = true;
+      exportTrackerSelf.checkCompleted();
+    };
+    
+    this.screenFlowExportDone = function() {
+      console.log( 'GameExporter.exportFunction : Screen Flow Export Done' );
+      exportTrackerSelf.screenFlowExportCompleted = true;
+      exportTrackerSelf.checkCompleted();
+    };
     
     this.spriteExportDone = function() {
+      console.log( 'GameExporter.exportFunction : Sprite Export Done' );
       exportTrackerSelf.spriteExportCompleted = true;
       exportTrackerSelf.checkCompleted();
-    }( wrapupExport );
+    };
+    
+    this.interactionsExportDone = function() {
+      console.log( 'GameExporter.exportFunction : Interactions Export Done' );
+      exportTrackerSelf.interactionsExportCompleted = true;
+      exportTrackerSelf.checkCompleted();
+    };
+    
+    this.gameClocksExportDone = function() {
+      console.log( 'GameExporter.exportFunction : Game Clocks Export Done' );
+      exportTrackerSelf.gameClocksExportCompleted = true;
+      exportTrackerSelf.checkCompleted();
+    };
+    
+    this.ticksPerSecondExportDone = function() {
+      console.log( 'GameExporter.exportFunction : Ticks Per Second Export Done' );
+      exportTrackerSelf.ticksPerSecondExportCompleted = true;
+      exportTrackerSelf.checkCompleted();
+    };
     
     
     this.checkCompleted = function() {
       if (
-          exportTrackerSelf.spriteExportCompleted
+          exportTrackerSelf.screenExportCompleted && 
+          exportTrackerSelf.screenFlowExportCompleted && 
+          exportTrackerSelf.spriteExportCompleted && 
+          exportTrackerSelf.interactionsExportCompleted && 
+          exportTrackerSelf.gameClocksExportCompleted && 
+          exportTrackerSelf.ticksPerSecondExportCompleted
       ) {
-        exportTrackerSelf.completedCallback( retGameObject );
+    
+        console.log( 'GameExporter.exportFunction : Export Completed' );
+        callback( retGameObject, exportedFiles );
+      
       }
     };
     
   };
   
-  exportSprites( game, exportPath, function( spriteJson ) {
+  exportScreens( game, exportPath, function( screenJson ) {
+  
+    retGameObject[ 'screens' ] = screenJson;
+    exportTracker.screenExportDone();
+    
+  } );
+  
+  exportScreenFlow( game, exportPath, function( screenFlowJson ) {
+    
+    retGameObject[ 'screenFlowJson' ] = screenFlowJson;
+    exportTracker.screenFlowExportDone();
+    
+  } );
+  
+  exportSprites( game, exportPath, function( spriteJson, spriteFiles ) {
     
     retGameObject[ 'sprites' ] = spriteJson;
+    exportedFiles[ 'sprites' ] = spriteFiles;
     exportTracker.spriteExportDone();
     
   } );
+  
+  exportInteractions( game, exportPath, function( interactionsJson ) {
+    
+    retGameObject[ 'interactions' ] = interactionsJson;
+    exportTracker.interactionsExportDone();
+    
+  } );
+  
+  exportGameClocks( game, exportPath, function( gameClocksJson ) {
+    
+    retGameObject[ 'gameClocks' ] = gameClocksJson;
+    exportTracker.gameClocksExportDone();
+    
+  } );
+  
+  retGameObject[ 'ticksPerSecond' ] = game.ticksPerSecond;
+  exportTracker.ticksPerSecondExportDone();
+  
+};
+
+var exportScreens = function( game, exportPath, callback ) {
+  
+  callback( game.screens );
+  
+};
+
+var exportScreenFlow = function( game, exportPath, callback ) {
+  
+  callback( game.screenFlow );
   
 };
   
@@ -51,22 +142,49 @@ var exportSprites = function( game, exportPath, callback ) {
   var spritesToProcess = game.sprites.length;
   var spritesProcessed = 0;
   
+  console.log( 'GameExporter.exportSprites : ' + spritesToProcess + ' sprites to process' );
+  
+  var spriteFiles = Array();
+  
   game.sprites.forEach( function( curSpriteJson ) {
     
     var fileName = exportPath + curSpriteJson.id + '.png';
+    
+    console.log( 'GameExporter.exportSprites : Processing sprite ' + curSpriteJson.id );
+    
+    spriteFiles.push( fileName );
     
     exportSprite( curSpriteJson, fileName, function( exportedSpriteJson, writtenFileName ) {
       
       retSprites[ curSpriteJson.id ] = curSpriteJson;
       spritesProcessed = spritesProcessed + 1;
       
+      console.log( 'GameExporter.exportSprites : Completed processing sprite ' + curSpriteJson.id + ' : ' + spritesProcessed + ' sprites processed' );
+      
       if ( spritesProcessed >= spritesToProcess ) {
-        callback( retSprites );
+        console.log( 'GameExporter.exportSprites : All sprites processed' );
+        callback( retSprites, spriteFiles );
       }
       
     } );
     
   } );
+  
+};
+
+/**
+ * The interactions JSON represented in the game JSON should be acceptable as is
+ */
+var exportInteractions = function( game, exportPath, callback ) {
+  
+  callback( game.interactions );
+  
+};
+
+
+var exportGameClocks = function( game, exportPath, callback ) {
+  
+  callback( game.gameClocks );
   
 };
 

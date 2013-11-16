@@ -46,6 +46,8 @@ function decToHex ( number ){
  */
 var exporter = function( spriteJson, fileName, callback ) {
     
+    console.log( 'SpritePNGExporter.exporter : Exporting ' + spriteJson.id + ' to ' + fileName );
+    
     var retSpriteJson = {};
     
     retSpriteJson[ 'id' ] = spriteJson.id;
@@ -142,20 +144,31 @@ var exporter = function( spriteJson, fileName, callback ) {
       
     }
     
+    
+    console.log( 'SpritePNGExporter.exporter : Writing rendered PNG to file' );
+    
     /*
      * Write the rendered PNG to file
      */
     var spriteWriteStream = fs.createWriteStream( fileName );
+    var packedPng = outputPng.pack();
     
-    spriteWriteStream.on( 'end', function() {
+    packedPng.on( 'end', function() {
+      
+      console.log( 'SpritePNGExporter.exporter : Write completed' );
       
       if ( callback ) {
+        console.log( 'SpritePNGExporter.exporter : Completed processing sprite file ' + fileName );
         callback( retSpriteJson, fileName );
       }
       
     } );
     
-    outputPng.pack().pipe( spriteWriteStream );
+    spriteWriteStream.on( 'error', function( err ) {
+      console.log( 'SpritePNGExporter.exporter : Error encountered writing file ' + fileName + ' :: ' + err );
+    } );
+    
+    packedPng.pipe( spriteWriteStream );
     
 };
   
