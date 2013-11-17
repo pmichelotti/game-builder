@@ -4,14 +4,16 @@ define( [
           'persistence/screenDeserializationFunctions', 
           'persistence/interactionDeserializationFunctions',
           'persistence/screenFlowDeserializationFunctions',
-          'persistence/gameClockDeserializationFunctions' ],
+          'persistence/gameClockDeserializationFunctions',
+          'persistence/propertiesDeserializationFunctions' ],
           function(
               Game,
               spriteFunctions,
               screenFunctions, 
               interactionFunctions, 
               screenFlowFunctions, 
-              gameClockFunctions ) {
+              gameClockFunctions,
+              propertiesFunctions ) {
 
 
   var makeGame = function( json ) {
@@ -56,7 +58,7 @@ define( [
       } );
     }
     
-    gameOptions[ 'ticksPerSecond' ] = json.ticksPerSecond;
+    gameOptions[ 'properties' ] = propertiesFunctions.makeProperties( json.properties, gameOptions );
     
     return new Game( json.id, gameOptions );
 

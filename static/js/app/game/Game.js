@@ -1,4 +1,4 @@
-define( [ 'screenFlow/ScreenFlow' ], function( ScreenFlow ) {
+define( [ 'screenFlow/ScreenFlow', 'properties/Properties' ], function( ScreenFlow, Properties ) {
 
   var Game = function( id, options ) {
 
@@ -15,9 +15,8 @@ define( [ 'screenFlow/ScreenFlow' ], function( ScreenFlow ) {
     this.sprites = options.sprites || Array();
     this.interactions = options.interactions || Array();
     this.gameClocks = options.gameClocks || Array();
-    this.ticksPerSecond = options.ticksPerSecond || 15;
     
-    this.properties = options.properties || Array();
+    this.properties = options.properties || new Properties();
 
     this.toJSON = function() {
 
@@ -52,14 +51,8 @@ define( [ 'screenFlow/ScreenFlow' ], function( ScreenFlow ) {
         retObject[ 'gameClocks' ].push( curGameClock.toJSON() );
       } );
       
-      retObject[ 'ticksPerSecond' ] = self.ticksPerSecond;
+      retObject[ 'properties' ] = self.properties.toJSON();
       
-      retObject[ 'properties' ] = Array();
-      
-      self.properties.forEach( function( curProperty ) {
-        retObject[ 'properties' ].push( curProperty.toJSON() );
-      } );
-
       return retObject;
     };
   };

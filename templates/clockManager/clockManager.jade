@@ -28,7 +28,9 @@ div.clock-manager-container( data-bind = 'with : clockManager' )
         input( type = 'number', name = 'units', step = '1', data-bind = 'value : units' )
       button.btn.btn-large.btn-primary.pull-right( type = 'submit' ) New Game Clock
   div.ticks-per-second-container( data-bind = 'with : game' )
-    form
+    form( data-bind = 'with : properties' )
       label Ticks Per Second
         input( type = 'number', name = 'ticksPerSecond', data-bind = 'value : ticksPerSecond' )
+      label Rendering Clock
+        select( data-bind = 'options : $parent.gameClocks, optionsText : "id", optionsCaption : "Clock", value : renderingClock' )
   

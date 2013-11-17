@@ -20,7 +20,7 @@ var exportFunction = function( game, exportPath, callback ) {
     this.spriteExportCompleted = false;
     this.interactionsExportCompleted = false;
     this.gameClocksExportCompleted = false;
-    this.ticksPerSecondExportCompleted = false;
+    this.propertiesExportComplete = false;
     
     this.screenExportDone = function() {
       console.log( 'GameExporter.exportFunction : Screen Export Done' );
@@ -52,9 +52,9 @@ var exportFunction = function( game, exportPath, callback ) {
       exportTrackerSelf.checkCompleted();
     };
     
-    this.ticksPerSecondExportDone = function() {
-      console.log( 'GameExporter.exportFunction : Ticks Per Second Export Done' );
-      exportTrackerSelf.ticksPerSecondExportCompleted = true;
+    this.propertiesExportDone = function() {
+      console.log( 'GameExporter.exportFunction : Properties Export Done' );
+      exportTrackerSelf.propertiesExportCompleted = true;
       exportTrackerSelf.checkCompleted();
     };
     
@@ -66,7 +66,7 @@ var exportFunction = function( game, exportPath, callback ) {
           exportTrackerSelf.spriteExportCompleted && 
           exportTrackerSelf.interactionsExportCompleted && 
           exportTrackerSelf.gameClocksExportCompleted && 
-          exportTrackerSelf.ticksPerSecondExportCompleted
+          exportTrackerSelf.propertiesExportCompleted
       ) {
     
         console.log( 'GameExporter.exportFunction : Export Completed' );
@@ -113,8 +113,12 @@ var exportFunction = function( game, exportPath, callback ) {
     
   } );
   
-  retGameObject[ 'ticksPerSecond' ] = game.ticksPerSecond;
-  exportTracker.ticksPerSecondExportDone();
+  exportProperties( game, exportPath, function( propertiesJson ) {
+  
+    retGameObject[ 'properties' ] = propertiesJson;
+    exportTracker.propertiesExportDone();
+    
+  } );
   
 };
 
@@ -185,6 +189,12 @@ var exportInteractions = function( game, exportPath, callback ) {
 var exportGameClocks = function( game, exportPath, callback ) {
   
   callback( game.gameClocks );
+  
+};
+
+var exportProperties = function( game, exportPath, callback ) {
+  
+  callback( game.properties );
   
 };
 
