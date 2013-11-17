@@ -51,6 +51,7 @@ var exporter = function( spriteJson, fileName, callback ) {
     var retSpriteJson = {};
     
     retSpriteJson[ 'id' ] = spriteJson.id;
+    retSpriteJson[ 'image' ] = spriteJson.id + '.png';
     retSpriteJson[ 'frames' ] = {};
     
     var renderedWidth = 0;
@@ -79,7 +80,6 @@ var exporter = function( spriteJson, fileName, callback ) {
       retSpriteFrame[ 'id' ] = curFrameJson.id;
       retSpriteFrame[ 'width' ] = spriteFrameWidth;
       retSpriteFrame[ 'height' ] = spriteFrameHeight;
-      retSpriteFrame[ 'image' ] = fileName;
       retSpriteFrame[ 'position' ] = {
           x : 0, 
           y : pixels.length
@@ -158,7 +158,7 @@ var exporter = function( spriteJson, fileName, callback ) {
       console.log( 'SpritePNGExporter.exporter : Write completed' );
       
       if ( callback ) {
-        console.log( 'SpritePNGExporter.exporter : Completed processing sprite file ' + fileName );
+        console.log( 'SpritePNGExporter.exporter : Completed processing sprite file ' + fileName + ' returning json ' + JSON.stringify( retSpriteJson ) );
         callback( retSpriteJson, fileName );
       }
       

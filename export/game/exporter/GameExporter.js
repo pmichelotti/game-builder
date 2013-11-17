@@ -156,7 +156,7 @@ var exportSprites = function( game, exportPath, callback ) {
     
     exportSprite( curSpriteJson, fileName, function( exportedSpriteJson, writtenFileName ) {
       
-      retSprites[ curSpriteJson.id ] = curSpriteJson;
+      retSprites[ curSpriteJson.id ] = exportedSpriteJson;
       spritesProcessed = spritesProcessed + 1;
       
       console.log( 'GameExporter.exportSprites : Completed processing sprite ' + curSpriteJson.id + ' : ' + spritesProcessed + ' sprites processed' );
