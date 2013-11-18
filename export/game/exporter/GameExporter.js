@@ -86,7 +86,7 @@ var exportFunction = function( game, exportPath, callback ) {
   
   exportScreenFlow( game, exportPath, function( screenFlowJson ) {
     
-    retGameObject[ 'screenFlowJson' ] = screenFlowJson;
+    retGameObject[ 'screenFlow' ] = screenFlowJson;
     exportTracker.screenFlowExportDone();
     
   } );
