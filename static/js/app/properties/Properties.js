@@ -2,6 +2,8 @@ define( [], function() {
   
   var Properties = function( options ) {
     
+    options = options || {};
+    
     var self = this;
     
     this.ticksPerSecond = options.ticksPerSecond;

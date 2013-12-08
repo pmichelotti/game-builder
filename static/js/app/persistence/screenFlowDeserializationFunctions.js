@@ -70,7 +70,8 @@ define( [ 'transition/Transition', 'transition/TransitionList', 'screenFlow/Scre
     }
     
     return new ScreenFlow( {
-      screenFlowNodes : screenFlowNodes
+      screenFlowNodes : screenFlowNodes, 
+      startingScreenFlowNode : screenFlowNodesMap[ json.startingScreenFlowNode ]
     } );
   };
   
