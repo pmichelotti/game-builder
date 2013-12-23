@@ -39,6 +39,9 @@ define( [ 'sprites/sprite/VirtualPixel' ], function( VirtualPixel ) {
       }, 
       "mouseenter" : function( event, editContext, eventEliciter, parameters ) {
         
+        console.log( "Pencil.listeners.mouseenter : " + drawingState );
+        console.log( lastPixel );
+        
         if ( drawingState === DRAWING_STATE_DRAWING && eventEliciter && eventEliciter.draw && parameters.pixel ) {
            
           if ( parameters.pixel === lastPixel ) {

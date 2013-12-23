@@ -1,72 +1,95 @@
-define( [ 'sprites/sprite/SpriteFrame', 'sprites/sprite/VirtualPixel' ], function( SpriteFrame, VirtualPixel ) {
+define( [ 'sprites/sprite/SpriteFrame', 'sprites/sprite/VirtualPixel', 'sprites/sprite/EditableSize', 'sprites/sprite/EditableVirtualPixel' ], function( SpriteFrame, VirtualPixel, EditableSize, EditablePixel ) {
 
   var EditableSpriteFrame = function( spriteFrame ) {
 
     var self = this;
-
+    
     this.spriteFrame = spriteFrame;
-
-    this.newName = ko.observable( spriteFrame.name );
-    this.name = this.newName;
-    this.newSize = ko.observable( spriteFrame.size );
-    this.size = this.newSize;
-    this.newPixelSize = ko.observable( spriteFrame.pixelSize );
-    this.pixelSize = this.newPixelSize;
-
-    this.pixels = null;
-
+    
+    this.name = ko.observable( spriteFrame.name );
+    this.size = new EditableSize( spriteFrame.size ); 
+    this.pixelSize = ko.observable( spriteFrame.pixelSize );
+    this.pixels = ko.observableArray();
+    
     var initializePixelMatrix = function() {
-      var newMatrix = Array();
+    
+      /*
+       * Empty the array of pixels
+       */
+      self.pixels.removeAll();
+      
+      for ( var curX = 0; curX < self.size.width(); curX++ ) {
+        
+        var curYArray = ko.observableArray();
 
-      for ( var curX = 0; curX < self.newSize().width; curX++ ) {
-        var curYArray = Array();
-
-        for ( var curY = 0; curY < self.newSize().height; curY++ ) {
+        for ( var curY = 0; curY < self.size.height(); curY++ ) {
           if ( self.spriteFrame.pixels && self.spriteFrame.pixels[ curX ][ curY ] ) {
-            curYArray.push( self.spriteFrame.pixels[ curX ][ curY ] );
+            curYArray.push( new EditablePixel( self.spriteFrame.pixels[ curX ][ curY ] ) );
           }
           else {
-            curYArray.push( new VirtualPixel( { x : curX, y : curY } ) );
+            curYArray.push( new EditablePixel( { x : curX, y : curY } ) );
           }
         }
 
-        newMatrix.push( curYArray );
+        self.pixels.push( curYArray );
+        
       }
 
-      self.pixels = newMatrix;
     };
-
-    var updatePixelMatrix = function() {
-      var newMatrix = Array();
-
-      for ( var curX = 0; curX < self.newSize().width; curX++ ) {
-        var curYArray = Array();
-
-        for ( var curY = 0; curY < self.newSize().height; curY++ ) {
-          if ( self.pixels != null && self.pixels[ curX ][ curY ] ) {
-            curYArray.push( self.pixels[ curX ][ curY ] );
-          }
-          else {
-            curYArray.push( new VirtualPixel( { x : curX, y : curY } ) );
-          }
-        }
-
-        newMatrix.push( curYArray );
-      }
-
-      self.pixels = newMatrix;
-    };
-
+    
     initializePixelMatrix();
+    
+    var updatePixelMatrix = function() {
+      
+      /*
+       * Save off the current pixels
+       */
+      var oldFrame = Array();
+      
+      for ( var curX = 0; curX < self.pixels().length; curX++ ) {
+        var curYArray = Array();
+        
+        for ( var curY = 0; curY < self.pixels()[ curX ]().length; curY++ ) {
+          
+          curYArray.push( self.pixels()[ curX ]()[ curY ] );
+          
+        }
+        
+        oldFrame.push( curYArray );
+        
+      }
+      
+      self.pixels.removeAll();
+      
+      /*
+       * Place the saved pixels into the newly sized matrix
+       */
+      for ( var curX = 0; curX < self.size.width(); curX++ ) {
+        
+        var curYArray = ko.observableArray();
 
-    this.newSize.subscribe( updatePixelMatrix );
+        for ( var curY = 0; curY < self.size.height(); curY++ ) {
+          if ( oldFrame[ curX ] && oldFrame[ curX ][ curY ] ) {
+            curYArray.push( oldFrame[ curX ][ curY ] );
+          }
+          else {
+            curYArray.push( new EditablePixel( { x : curX, y : curY } ) );
+          }
+        }
+        
+        self.pixels.push( curYArray );
+        
+      }
+      
+    };
+    
+    this.size.subscribe( updatePixelMatrix );
 
-
-
+    
     this.draw = function( pixel ) {
 
-      if ( self.pixels && self.pixels[ pixel.position.x ][ pixel.position.y ] ) {
-        self.pixels[ pixel.position.x ][ pixel.position.y ] = pixel;
+      if ( self.pixels && self.pixels()[ pixel.position.x ] && self.pixels()[ pixel.position.x ]()[ pixel.position.y ] ) {
+        self.pixels()[ pixel.position.x ]()[ pixel.position.y ].update( pixel );
         return;
       }
 
@@ -81,12 +104,26 @@ define( [ 'sprites/sprite/SpriteFrame', 'sprites/sprite/VirtualPixel' ], functio
     };
 
     this.save = function() {
+      
+      var savedPixelMatrix = Array();
+      var savedSize = self.size.save();
+      
+      for ( var curX = 0; curX < savedSize.width; curX++ ) {
+        var curYArray = Array();
+        
+        for ( var curY = 0; curY < savedSize.height; curY++ ) {
+          curYArray.push( self.pixels()[ curX ]()[ curY ].save() );
+        }
+        
+        savedPixelMatrix.push( curYArray );
+      }
+      
 
       var newSpriteFrame = new SpriteFrame( self.spriteFrame.id, {
-        name : self.newName(),
-        size : self.newSize(),
-        pixelSize : self.newPixelSize(),
-        pixels : self.pixels
+        name : self.name(),
+        size : savedSize,
+        pixelSize : self.pixelSize(),
+        pixels : savedPixelMatrix
       } );
 
       return newSpriteFrame;

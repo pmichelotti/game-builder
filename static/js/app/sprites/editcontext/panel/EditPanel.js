@@ -1,84 +1,86 @@
 define( [], function() {
 
+  /**
+   * A Panel represents a rendered Sprite Frame and establishes what operations are 
+   * available within the context of the panel and how those operations are executed.  
+   */
 	var EditPanel = function( options ) {
 
+	  options = options || {};
+	  
 		var self = this;
 
-		this.spriteRenderer = options.spriteRenderer;
-
+		this.editContext = options.editContext;
+		
 		this.zoom = ko.observable( 5 );
 
-		/*
-		 * Indicates whether the sprite has been rendered in the context of this
-		 * panel since it was last changed.
-		 */
-		this.dirty = ko.observable( false );
-
-		var editContext = null;
-
-		this.setEditContext = function( context ) {
-			if ( !editContext ) {
-				editContext = context;
-			}
-			else {
-				throw "Edit Context can only be set once for the panel";
-			}
-		};
+		this.spriteFrame = options.spriteFrame;
 
 		this.draw = function( pixel ) {
-			if ( editContext ) {
-				editContext.draw( pixel );
+			if ( self.editContext ) {
+				self.editContext.draw( pixel );
 			}
 		};
 
 		this.erase = function( pixel ) {
-			if ( editContext ) {
-				editContext.erase( pixel );
+			if ( self.editContext ) {
+			  self.editContext.erase( pixel );
 			}
 		};
 
 		this.zoomIn = function() {
 			if ( self.zoom() < 10 ) {
 				self.zoom( self.zoom() + 1 );
-
-				self.dirty( true );
 			}
 		};
 
 		this.zoomOut = function() {
 			if ( self.zoom() > 0 ) {
 				self.zoom( self.zoom() - 1 );
-
-				self.dirty( true );
 			}
 		};
-
-		this.render = function( container ) {
-			if ( self.spriteRenderer ) {
-				var renderedDom = self.spriteRenderer.render( editContext.spriteFrame(), self.zoom(), self );
-
-				var $container = $( container );
-
-				$container.empty();
-				$container.append( renderedDom );
-
-				if ( $container.height() < renderedDom.height() ) {
-					$container.height( renderedDom.height() );
-				}
-			}
-
-			self.dirty( false );
-		};
-
 
 		/**
 		 * Delegate event handling to the edit context if one has been set.
 		 */
-		this.handleEvent = function( event, parameters ) {
-			if ( editContext ) {
-				editContext.handleEvent( event, self, parameters );
+		this.handleEvent = function( dataModel, event ) {
+			if ( self.editContext ) {
+				self.editContext.handleEvent( event, self, { pixel : dataModel } );
 			}
 		};
+		
+		this.renderedPixelSize = ko.computed( function() {
+		  if ( self.spriteFrame && self.spriteFrame() ) {
+		    return self.spriteFrame().pixelSize() * ( self.zoom() + 1 );
+		  }
+		  return 0;  
+		} );
+		
+		this.panelWidth = ko.computed( function() {
+		  if ( self.spriteFrame && self.spriteFrame() ) {
+  		  return self.renderedPixelSize() * self.spriteFrame().size.width();
+		  }
+		  return 0;
+		} );
+		
+		this.panelHeight = ko.computed( function() {
+		  if ( self.spriteFrame && self.spriteFrame() ) {
+  		  return self.renderedPixelSize() * self.spriteFrame().size.height();
+		  }
+		  return 0;
+		} );
+		
+		this.renderedPixelSizeStyle = ko.computed( function() {
+		  return self.renderedPixelSize() + 'px';
+		} );
+		
+		this.panelWidthStyle = ko.computed( function() {
+		  return self.panelWidth() + 'px';
+		} );
+		
+		this.panelHeightStyle = ko.computed( function() {
+		  return self.panelHeight() + 'px';
+		} );
 
 	};
 

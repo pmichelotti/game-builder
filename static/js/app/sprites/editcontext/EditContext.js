@@ -1,18 +1,18 @@
 define( [ 'sprites/sprite/EditableSpriteFrame' ], function( EditableSpriteFrame ) {
 
+  /**
+   * The EditContext exposes an abstract sprite drawing API and manages sprite Panels, tools, and pallets. 
+   */
   var EditContext = function( options ) {
 
     var self = this;
 
     this.spriteFrame = ko.observable();
 
-    this.editPanel = options.editPanel;
-    this.viewPanel = options.viewPanel;
+    this.editPanel = options.editPanelFactory.make( self, self.spriteFrame );
+    //this.viewPanel = options.viewPanelFactory( { editContext : self } );
     this.tools = options.tools || Array();
     this.pallet = options.pallet;
-
-    this.editPanel.setEditContext( self );
-    this.viewPanel.setEditContext( self );
 
     this.currentTool = ko.observable( this.tools[ 0 ] );
 
@@ -37,6 +37,13 @@ define( [ 'sprites/sprite/EditableSpriteFrame' ], function( EditableSpriteFrame 
       }
     };
 
+    /**
+     * Delegates event handling to the currently selected tool
+     * 
+     * @param event
+     * @param eliciter
+     * @param parameters
+     */
     this.handleEvent = function( event, eliciter, parameters ) {
 
       if ( self.currentTool() && self.currentTool().listeners[ event.type ] ) {
@@ -46,8 +53,8 @@ define( [ 'sprites/sprite/EditableSpriteFrame' ], function( EditableSpriteFrame 
     };
 
     this.setDirty = function() {
-      self.editPanel.dirty( true );
-      self.viewPanel.dirty( true );
+      //self.editPanel.dirty( true );
+      //self.viewPanel.dirty( true );
     };
 
     this.clear = function() {

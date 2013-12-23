@@ -49,7 +49,14 @@ div.sprite-editor-container.container.clearfix( data-bind = 'with : spriteEditor
   div.sprite-edit-context( data-bind = 'with : spriteFrameEditContext' )
     div.row
       div.col-md-11
-        div.sprite-edit-panel( data-bind = 'spritearea : editPanel' )
+        div.sprite-edit-panel( data-bind = 'with : editPanel' )
+          div.sprite-frame-edit-container( data-bind = 'with : spriteFrame' )
+            div.rendered-sprite-size-container( data-bind = 'style : { "width" : $parent.panelWidthStyle, "height" : $parent.panelHeightStyle }' )
+              div.rendered-sprite-container.clearfix( data-bind = 'foreach : pixels' )
+                div.rendered-sprite-pixel-row.pull-left( data-bind = 'style : { width : $parents[ 1 ].renderedPixelSizeStyle }, foreach : $data' )
+                  div.rendered-sprite-single-pixel( data-bind = 'event : { mousedown : $parents[ 2 ].handleEvent, mouseup : $parents[ 2 ].handleEvent, click : $parents[ 2 ].handleEvent, mouseenter : $parents[ 2 ].handleEvent }, style : { width : $parents[ 2 ].renderedPixelSizeStyle, height : $parents[ 2 ].renderedPixelSizeStyle, "background-color" : color, opacity : opacity }' )
+            
+            
         div.sprite-frame-tool-bar
           span( data-bind = 'with : spriteFrame' ) Editing
             em( data-bind = 'text : name' )

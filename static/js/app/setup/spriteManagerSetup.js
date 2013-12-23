@@ -1,42 +1,31 @@
 define( [
-          'sprites/sprite/renderer/DOMSpriteRenderer',
-          'sprites/editcontext/panel/EditPanel',
-          'sprites/editcontext/panel/ViewPanel',
+          'sprites/editcontext/panel/EditPanelFactory',
+          'sprites/editcontext/panel/ViewPanelFactory',
           'sprites/editcontext/tool/Eraser',
           'sprites/editcontext/tool/EyeDropper',
           'sprites/editcontext/tool/Pencil',
           'sprites/editcontext/panel/Pallet',
           'sprites/editcontext/EditContext',
           'sprites/spriteeditor/SpriteEditor',
-          'sprites/manager/SpriteManager'
+          'sprites/manager/SpriteManager',
+          'sprites/sprite/renderer/DOMSpriteRenderer'
         ],
         function (
-            DOMSpriteRenderer,
-            EditPanel,
-            ViewPanel,
+            EditPanelFactory,
+            ViewPanelFactory,
             Eraser,
             EyeDropper,
             Pencil,
             Pallet,
             EditContext,
             SpriteEditor,
-            SpriteManager
+            SpriteManager, 
+            DOMSpriteRenderer
             ) {
 
   var setup = function() {
-
-    /*
-     * Sprite Manager Setup
-     */
+    
     var spriteRenderer = new DOMSpriteRenderer();
-
-    var editPanel = new EditPanel( {
-      spriteRenderer : spriteRenderer
-    } );
-
-    var viewPanel = new ViewPanel( {
-      spriteRenderer : spriteRenderer
-    } );
 
     var pencil = new Pencil();
     var eraser = new Eraser();
@@ -46,8 +35,8 @@ define( [
 
 
     var editContext = new EditContext( {
-        editPanel : editPanel,
-        viewPanel : viewPanel,
+        editPanelFactory : new EditPanelFactory(),
+        viewPanelFactory : new ViewPanelFactory(),
         tools : [ pencil, eraser, eyeDropper ],
         pallet : pallet
     } );
